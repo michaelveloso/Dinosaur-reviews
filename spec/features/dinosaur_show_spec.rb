@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'user visits show page', %Q{
+feature 'user visits show page', %{
   As a user
   I want to view the details of a dino
   So that I can learn more about it
@@ -14,7 +14,7 @@ feature 'user visits show page', %Q{
   scenario "visit details page to see name and details" do
     dino = FactoryGirl.create(:dinosaur)
 
-    visit "dinosaurs/#{dino.id}"
+    visit dinosaur_path(dino)
 
     expect(page).to have_content(dino.name)
     expect(page).to have_content(dino.location_found)
@@ -25,7 +25,7 @@ feature 'user visits show page', %Q{
     dino = FactoryGirl.create(:dinosaur)
     dino_two = FactoryGirl.create(:dinosaur)
 
-    visit "dinosaurs/#{dino.id}"
+    visit dinosaur_path(dino)
 
     expect(page).to have_content(dino.name)
     expect(page).to_not have_content(dino_two.name)
