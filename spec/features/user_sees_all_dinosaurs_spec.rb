@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'sees index page', %Q{
+feature 'sees index page', %{
   As a user
   I want to view an index of dinosaurs
   So that I can learn about them
@@ -23,11 +23,11 @@ feature 'sees index page', %Q{
     expect(page).to have_content(dino.name)
   end
 
-  scenario 'user clicks dino name' do
-    dino = FactoryGirl.create(:dinosaur)
-    visit dinosaurs_path
-    click_link(dino.name)
-    expect(page).to have_content(dino.name)
-    expect(page).to have_content(dino.location_found)
-  end
+  # scenario 'user clicks dino name' do
+  #   dino = FactoryGirl.create(:dinosaur)
+  #   visit dinosaurs_path
+  #   click_link(dino.name)
+  #   expect(page).to have_content(dino.name)
+  #   expect(page).to have_content(dino.location_found)
+  # end
 end
