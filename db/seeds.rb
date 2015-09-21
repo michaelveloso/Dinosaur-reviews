@@ -5,3 +5,19 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+# t.string :name, null: false
+# t.string :location_found, null: false
+# t.string :info_url, null: false
+# t.string :photo_url
+# t.belongs_to :user
+
+Dinosaur.create!(
+  name: "Giganotosaurus",
+  location_found: "South America",
+  info_url: "https://en.wikipedia.org/wiki/Giganotosaurus"
+)
+Dinosaur.create!(
+  name: "Spinosaurus",
+  location_found: "North Africa",
+  info_url: "https://en.wikipedia.org/wiki/Spinosaurus"
+)
