@@ -33,5 +33,4 @@ class DinosaursController < ApplicationController
       :location_found,
       :info_url).merge(user_id: current_user.id)
   end
-
 end
