@@ -34,7 +34,7 @@ feature 'user updates review', %{
     end
     scenario "visit details page, clicks update button" do
       dino = FactoryGirl.create(:dinosaur)
-      review = FactoryGirl.create(:review, dinosaur_id: dino.id)
+      FactoryGirl.create(:review, dinosaur_id: dino.id)
 
       visit dinosaur_path(dino)
       click_button("Update")
@@ -43,7 +43,7 @@ feature 'user updates review', %{
 
     scenario "User fills out form correctly" do
       dino = FactoryGirl.create(:dinosaur)
-      review = FactoryGirl.create(:review, dinosaur_id: dino.id)
+      FactoryGirl.create(:review, dinosaur_id: dino.id)
 
       visit dinosaur_path(dino)
       click_button("Update")
@@ -56,8 +56,7 @@ feature 'user updates review', %{
 
     scenario "User fills out form incorrectly" do
       dino = FactoryGirl.create(:dinosaur)
-      review = FactoryGirl.create(:review, dinosaur_id: dino.id)
-      
+      FactoryGirl.create(:review, dinosaur_id: dino.id)
       visit dinosaur_path(dino)
       click_button("Update")
       fill_in("Body", with: "What a nice dinosaur!")

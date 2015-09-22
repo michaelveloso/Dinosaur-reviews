@@ -18,6 +18,6 @@ FactoryGirl.define do
     sequence(:body) { |n| "this one's great!#{n}" }
     rating 3
     dinosaur
-
+    user
   end
 end

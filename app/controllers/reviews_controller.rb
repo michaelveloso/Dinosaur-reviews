@@ -4,6 +4,7 @@ class ReviewsController < ApplicationController
   def new
     @reviews = Review.all
   end
+
   def create
     @review = Review.new(review_params)
     @dinosaur = Dinosaur.find(params[:dinosaur_id])
@@ -40,10 +41,11 @@ class ReviewsController < ApplicationController
     flash[:notice] = "Review deleted!"
     redirect_to dinosaur_path(@review.dinosaur_id)
   end
+
   private
 
   def review_params
     params.require(:review).permit(:body, :rating,
-     :dinosaur_id).merge(user_id: current_user.id)
+    :dinosaur_id).merge(user_id: current_user.id)
   end
 end
