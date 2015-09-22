@@ -11,13 +11,27 @@
 # t.string :photo_url
 # t.belongs_to :user
 
+ONE = User.create!(
+  email: "name@gmail.com",
+  password: "password",
+  password_confirmation: "password"
+)
+
+TWO = User.create!(
+  email: "someone@gmail.com",
+  password: "password",
+  password_confirmation: "password"
+)
+
 Dinosaur.create!(
   name: "Giganotosaurus",
   location_found: "South America",
-  info_url: "https://en.wikipedia.org/wiki/Giganotosaurus"
+  info_url: "https://en.wikipedia.org/wiki/Giganotosaurus",
+  user: TWO
 )
 Dinosaur.create!(
   name: "Spinosaurus",
   location_found: "North Africa",
-  info_url: "https://en.wikipedia.org/wiki/Spinosaurus"
+  info_url: "https://en.wikipedia.org/wiki/Spinosaurus",
+  user: ONE
 )

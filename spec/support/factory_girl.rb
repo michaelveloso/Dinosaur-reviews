@@ -11,6 +11,7 @@ FactoryGirl.define do
     sequence(:name) { |n| "Giganotosaurus#{n}" }
     location_found "South America"
     info_url "https://www.en.wikipedia.org/wiki/Giganotosaurus"
+    user
   end
 
   factory :review do
