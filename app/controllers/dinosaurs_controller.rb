@@ -31,7 +31,6 @@ class DinosaursController < ApplicationController
     params.require(:dinosaur).permit(
       :name,
       :location_found,
-      :info_url)
-      .merge(user_id: current_user.id)
+      :info_url).merge(user_id: current_user.id)
   end
 end
