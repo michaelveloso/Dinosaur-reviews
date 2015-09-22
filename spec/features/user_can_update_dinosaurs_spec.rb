@@ -20,7 +20,7 @@ feature 'user can update a dinosaur', %{
 
   scenario "User is not signed in" do
     visit new_user_session_path
-    expect(page).to have_content("Sign In Sign Up")
+    expect(page).to have_content("Sign Up Sign In")
   end
 
   feature "User is signed in" do
@@ -37,23 +37,23 @@ feature 'user can update a dinosaur', %{
       dinosaur = FactoryGirl.create(:dinosaur)
       visit dinosaur_path(dinosaur)
       click_link 'Edit this dinosaur!'
-      expect(page).to have_content("Edit this dinosaur!")
+      expect(page).to have_content("Change this Dinosaur!")
     end
 
     scenario 'form should be displayed correctly' do
       dinosaur = FactoryGirl.create(:dinosaur)
       visit edit_dinosaur_path(dinosaur)
-      expect(page).to have_content("Name")
-      expect(page).to have_content("Location found")
-      expect(page).to have_content("Info url")
+      find_field("Name")
+      find_field("Location found")
+      find_field("Info url")
     end
 
     scenario 'form is pre-filled with current values' do
       dinosaur = FactoryGirl.create(:dinosaur)
       visit edit_dinosaur_path(dinosaur)
-      expect(page).to have_content(dinosaur.name)
-      expect(page).to have_content(dinosaur.location_found)
-      expect(page).to have_content(dinosaur.info_url)
+      find_field('Name').value.should eq(dinosaur.name)
+      find_field('Location found').value.should eq(dinosaur.location_found)
+      find_field('Info url').value.should eq(dinosaur.info_url)
     end
 
     scenario 'edit page has link to show page' do
@@ -92,7 +92,6 @@ feature 'user can update a dinosaur', %{
         current_path.should == dinosaur_path(dinosaur)
         expect(page).to have_content("New Name")
         expect(page).to have_content("Idaho")
-        expect(page).to have_content("www.example.com")
       end
 
     end
