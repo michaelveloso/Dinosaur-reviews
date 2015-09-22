@@ -14,16 +14,7 @@ feature 'user can create a new dinosaur', %{
 
 } do
 
-  feature "User is not signed in" do
-
-    scenario "User is asked to sign in before creating a dinosaur" do
-      visit new_dinosaur_path
-      expect(page).to have_content("Sign Up Sign In")
-    end
-
-  end
-
-  feature "User is signed in" do
+  feature "User can create dinosaurs" do
 
     before(:each) do
       user = FactoryGirl.create(:user)
@@ -37,15 +28,14 @@ feature 'user can create a new dinosaur', %{
       visit root_path
       click_link "Create a dinosaur"
       expect(page).to have_content("Create a Dinosaur!")
-
     end
 
     scenario "Form fields are visible" do
 
       visit new_dinosaur_path
-      expect(page).to have_content("Name")
-      expect(page).to have_content("Location found")
-      expect(page).to have_content("Info url")
+      find_field("Name")
+      find_field("Location found")
+      find_field("Info url")
 
     end
 
