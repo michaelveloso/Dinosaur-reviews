@@ -33,10 +33,14 @@ feature 'user can create a new dinosaur', %{
     scenario "Form fields are visible" do
 
       visit new_dinosaur_path
+
+      expect(page).to have_content("Name")
+      expect(page).to have_content("Location found")
+      expect(page).to have_content("Info url")
+
       find_field("Name")
       find_field("Location found")
       find_field("Info url")
-
     end
 
     feature "User fills out form correctly" do
