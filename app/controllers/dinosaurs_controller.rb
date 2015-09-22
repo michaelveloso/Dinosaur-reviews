@@ -1,4 +1,6 @@
 class DinosaursController < ApplicationController
+  before_action :authenticate_user!, except: [:show, :index]
+
   def index
     @dinosaurs = Dinosaur.all
   end
@@ -14,9 +16,6 @@ class DinosaursController < ApplicationController
   def create
     @dinosaur = Dinosaur.new(dinosaur_params)
 
-    user = FactoryGirl.create(:user)
-    @dinosaur.user = user
-
     if @dinosaur.save
       flash[:success] = 'Dinosaur added!'
       redirect_to @dinosaur
@@ -29,7 +28,7 @@ class DinosaursController < ApplicationController
   private
 
   def dinosaur_params
-    params.require(:dinosaur).permit(:name, :location_found, :info_url)
+    params.require(:dinosaur).permit(:name, :location_found, :info_url).merge(user_id: current_user.id)
   end
 
 end
