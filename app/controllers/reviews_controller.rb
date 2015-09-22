@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @reviews = Review.all
   end
@@ -16,8 +18,32 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def edit
+    @review = Review.find(params[:id])
+  end
+
+  def update
+    @review = Review.find(params[:id])
+    if @review.update_attributes(review_params)
+      flash[:notice] = "Review Updated!"
+      redirect_to dinosaur_path(@review.dinosaur_id)
+    else
+      flash[:errors] = @review.errors.full_messages.join('. ')
+      render 'dinosaurs/show'
+    end
+  end
+
+  def destroy
+    # @dinosaur = Dinosaur.find(params[:id])
+    @review = Review.find(params[:id])
+    @review.destroy
+    flash[:notice] = "Review deleted!"
+    redirect_to dinosaur_path(@review.dinosaur_id)
+  end
   private
+
   def review_params
-    params.require(:review).permit(:body, :rating, :dinosaur_id)
+    params.require(:review).permit(:body, :rating,
+     :dinosaur_id).merge(user_id: current_user.id)
   end
 end

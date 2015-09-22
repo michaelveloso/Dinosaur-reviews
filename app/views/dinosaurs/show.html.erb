@@ -6,7 +6,9 @@
 User reviews:
   <ul>
     <% @dinosaur.reviews.each do |r| %>
-    <li>Reveiw: <%= r.body %>   |   Rating: <%= r.rating %></li>
+    <li>Reveiw: <%= r.body %>   |   Rating: <%= r.rating %>
+    <%= link_to "Update", edit_review_path(r.id) %>
+    <%= link_to "Delete", r, method: :delete %></li>
     <% end %>
   </ul>
 </h3>

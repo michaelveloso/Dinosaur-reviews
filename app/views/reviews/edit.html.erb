@@ -1,0 +1,10 @@
+<h1>Update Your Review</h1>
+<%= form_for [@dinosaur, @review] do |f| %>
+  <%= f.label :body %>
+  <%= f.text_field :body %>
+  <br>
+  <%= f.label :rating %>
+  <%= f.text_field :rating %>
+  <br>
+  <%= f.submit 'Submit' %>
+<% end %>

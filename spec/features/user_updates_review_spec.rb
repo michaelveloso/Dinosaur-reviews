@@ -1,15 +1,15 @@
 require 'rails_helper'
 
-feature 'user adds new review', %{
+feature 'user updates review', %{
   As a user
-  I want to review dinosaurs
-  So that I can share my opinions
+  I want to update reviews
+  So that I can change my mind
 
   Acceptance Criteria
-  [x] User sees the name of the dinosaur and list of reviews
-  [x] User must fill out form correctly
-  [x] User will see review on dino page if correctly filled
-  [x] User will see error if form is incorrect
+  [] User sees update button
+  [] User must fill out form correctly
+  [] User will see updated review on dino page if correctly filled
+  [] User will see error if form is incorrect
 
 } do
   feature "User is not signed in" do
@@ -32,34 +32,37 @@ feature 'user adds new review', %{
       fill_in 'Password', with: user.password
       click_button 'Log in'
     end
-    scenario "visit details page to see name and details" do
+    scenario "visit details page, clicks update button" do
       dino = FactoryGirl.create(:dinosaur)
       review = FactoryGirl.create(:review, dinosaur_id: dino.id)
 
       visit dinosaur_path(dino)
-
-      expect(page).to have_content(dino.name)
-      expect(page).to have_content(review.body)
+      click_button("Update")
+      expect(page).to have_content("Update Your Review")
     end
 
-    scenario "User fills out form" do
+    scenario "User fills out form correctly" do
       dino = FactoryGirl.create(:dinosaur)
+      review = FactoryGirl.create(:review, dinosaur_id: dino.id)
 
       visit dinosaur_path(dino)
+      click_button("Update")
       fill_in("Body", with: "What a nice dinosaur!")
       fill_in("Rating", with: 2)
       click_button("Submit")
 
-      expect(page).to have_content("Review added!")
+      expect(page).to have_content("Review Updated!")
     end
 
     scenario "User fills out form incorrectly" do
       dino = FactoryGirl.create(:dinosaur)
-
+      review = FactoryGirl.create(:review, dinosaur_id: dino.id)
+      
       visit dinosaur_path(dino)
+      click_button("Update")
       fill_in("Body", with: "What a nice dinosaur!")
-
       click_button("Submit")
+
       expect(page).to have_content("can't be blank")
     end
   end

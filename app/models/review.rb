@@ -1,5 +1,6 @@
 class Review < ActiveRecord::Base
   belongs_to :dinosaur
+  belongs_to :user
 
   validates :dinosaur, presence: true
   validates :body, presence: true
