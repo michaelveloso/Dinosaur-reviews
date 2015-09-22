@@ -40,6 +40,18 @@ class DinosaursController < ApplicationController
       render :edit
     end
   end
+
+  def destroy
+    @dinosaur = Dinosaur.find(params[:id])
+    if @dinosaur.destroy
+      flash[:success] = 'Dinosaur extinctified!'
+      redirect_to dinosaurs_path
+    else
+      flash[:errors] = @dinosaur.errors.full_messages.join(', ')
+      redirect_to @dinosaur
+    end
+  end
+
   private
 
   def dinosaur_params
