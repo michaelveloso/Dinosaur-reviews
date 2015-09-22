@@ -5,5 +5,6 @@ class DinosaursController < ApplicationController
 
   def show
     @dinosaur = Dinosaur.find(params[:id])
+    @review = Review.new
   end
 end

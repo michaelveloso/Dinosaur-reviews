@@ -12,4 +12,11 @@ FactoryGirl.define do
     location_found "South America"
     info_url "https://www.en.wikipedia.org/wiki/Giganotosaurus"
   end
+
+  factory :review do
+    sequence(:body) { |n| "this one's great!#{n}" }
+    rating 3
+    dinosaur
+
+  end
 end

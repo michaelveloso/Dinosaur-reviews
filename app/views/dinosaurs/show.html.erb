@@ -1,3 +1,21 @@
 <h1><%= @dinosaur.name %></h1>
 <p> Originally Found: <%= @dinosaur.location_found %></p>
 <p> <%= link_to "See More", @dinosaur.info_url %></p>
+
+<h3>
+User reviews:
+  <ul>
+    <% @dinosaur.reviews.each do |r| %>
+    <li>Reveiw: <%= r.body %>   |   Rating: <%= r.rating %></li>
+    <% end %>
+  </ul>
+</h3>
+<%= form_for [@dinosaur, @review] do |f| %>
+  <%= f.label :body %>
+  <%= f.text_field :body %>
+  <br>
+  <%= f.label :rating %>
+  <%= f.text_field :rating %>
+  <br>
+  <%= f.submit 'Submit' %>
+<% end %>
