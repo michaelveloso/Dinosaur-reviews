@@ -13,4 +13,11 @@ FactoryGirl.define do
     info_url "https://www.en.wikipedia.org/wiki/Giganotosaurus"
     user
   end
+
+  factory :review do
+    sequence(:body) { |n| "this one's great!#{n}" }
+    rating 3
+    dinosaur
+    user
+  end
 end
