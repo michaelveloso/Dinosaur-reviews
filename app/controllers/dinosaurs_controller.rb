@@ -28,7 +28,7 @@ class DinosaursController < ApplicationController
   private
 
   def dinosaur_params
-    params.require(:dinosaur).permit(:name, :location_found, :info_url).merge(user_id: current_user.id)
+    params.require(:dinosaur).permit(:name, :location_found,
+     :info_url).merge(user_id: current_user.id)
   end
-
 end
