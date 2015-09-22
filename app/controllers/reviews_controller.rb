@@ -30,7 +30,7 @@ class ReviewsController < ApplicationController
       redirect_to dinosaur_path(@review.dinosaur_id)
     else
       flash[:errors] = @review.errors.full_messages.join('. ')
-      render 'dinosaurs/show'
+      render :edit
     end
   end
 

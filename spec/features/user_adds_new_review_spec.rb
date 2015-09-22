@@ -24,7 +24,9 @@ feature 'user adds new review', %{
       expect(page).to have_content("Sign In")
     end
   end
+
   feature "User is signed in" do
+
     before(:each) do
       user = FactoryGirl.create(:user)
       visit new_user_session_path
@@ -32,6 +34,7 @@ feature 'user adds new review', %{
       fill_in 'Password', with: user.password
       click_button 'Log in'
     end
+
     scenario "visit details page to see name and details" do
       dino = FactoryGirl.create(:dinosaur)
       review = FactoryGirl.create(:review, dinosaur_id: dino.id)

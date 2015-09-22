@@ -12,18 +12,7 @@ feature 'user updates review', %{
   [] User will see error if form is incorrect
 
 } do
-  feature "User is not signed in" do
-    scenario "user adds review before sigining in" do
-      dino = FactoryGirl.create(:dinosaur)
 
-      visit dinosaur_path(dino)
-      fill_in("Body", with: "What a nice dinosaur!")
-      fill_in("Rating", with: 2)
-      click_button("Submit")
-
-      expect(page).to have_content("Sign In")
-    end
-  end
   feature "User is signed in" do
     before(:each) do
       user = FactoryGirl.create(:user)
@@ -37,7 +26,7 @@ feature 'user updates review', %{
       FactoryGirl.create(:review, dinosaur_id: dino.id)
 
       visit dinosaur_path(dino)
-      click_button("Update")
+      click_link("Update")
       expect(page).to have_content("Update Your Review")
     end
 
@@ -46,7 +35,7 @@ feature 'user updates review', %{
       FactoryGirl.create(:review, dinosaur_id: dino.id)
 
       visit dinosaur_path(dino)
-      click_button("Update")
+      click_link("Update")
       fill_in("Body", with: "What a nice dinosaur!")
       fill_in("Rating", with: 2)
       click_button("Submit")
@@ -55,14 +44,14 @@ feature 'user updates review', %{
     end
 
     scenario "User fills out form incorrectly" do
-      dino = FactoryGirl.create(:dinosaur)
-      FactoryGirl.create(:review, dinosaur_id: dino.id)
-      visit dinosaur_path(dino)
-      click_button("Update")
+      review = FactoryGirl.create(:review)
+      visit dinosaur_path(review.dinosaur)
+      click_link("Update")
       fill_in("Body", with: "What a nice dinosaur!")
+      fill_in("Rating", with: "t")
       click_button("Submit")
 
-      expect(page).to have_content("can't be blank")
+      expect(page).to have_content("Rating Must be between 1 and 5")
     end
   end
 end

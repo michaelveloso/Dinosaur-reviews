@@ -18,6 +18,10 @@ class DinosaursController < ApplicationController
     redirect_to dinosaur_path(@review.dinosaur_id)
   end
 
+  def new
+    @dinosaur = Dinosaur.new
+  end
+
   def create
     @dinosaur = Dinosaur.new(dinosaur_params)
 
