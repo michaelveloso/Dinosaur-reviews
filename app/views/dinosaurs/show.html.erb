@@ -1,7 +1,6 @@
 <h1><%= @dinosaur.name %></h1>
 <p> Originally Found: <%= @dinosaur.location_found %></p>
 <p> <%= link_to "See More", @dinosaur.info_url %></p>
-
 <h3>
 User reviews:
   <ul>
@@ -21,3 +20,5 @@ User reviews:
   <br>
   <%= f.submit 'Submit' %>
 <% end %>
+<p> <%= link_to "Edit this dinosaur!", edit_dinosaur_path(@dinosaur) %></p>
+<p> <%= button_to "Exctinctify this dinosaur!", @dinosaur, class: 'button round tiny', method: :delete %> </p>
