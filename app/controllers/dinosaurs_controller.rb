@@ -1,5 +1,5 @@
 class DinosaursController < ApplicationController
-  before_action :authenticate_user!, except: [:show, :index]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @dinosaurs = Dinosaur.all
@@ -22,6 +22,33 @@ class DinosaursController < ApplicationController
     else
       flash[:errors] = @dinosaur.errors.full_messages.join(', ')
       render :new
+    end
+  end
+
+  def edit
+    @dinosaur = Dinosaur.find(params[:id])
+  end
+
+  def update
+    @dinosaur = Dinosaur.find(params[:id])
+
+    if @dinosaur.update(dinosaur_params)
+      flash[:success] = 'Dinosaur changed!'
+      redirect_to @dinosaur
+    else
+      flash[:errors] = @dinosaur.errors.full_messages.join(', ')
+      render :edit
+    end
+  end
+
+  def destroy
+    @dinosaur = Dinosaur.find(params[:id])
+    if @dinosaur.destroy
+      flash[:success] = 'Dinosaur extinctified!'
+      redirect_to dinosaurs_path
+    else
+      flash[:errors] = @dinosaur.errors.full_messages.join(', ')
+      redirect_to @dinosaur
     end
   end
 

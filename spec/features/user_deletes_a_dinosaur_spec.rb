@@ -6,10 +6,10 @@ feature 'user can delete an existing dinosaur', %{
   So that I can get rid of bad dinosaurs
 
   Acceptance Criteria
-  [] User can delete dinosaur from show page
-  [] User gets confirmation if dinosaur is deleted
-  [] User is taken to index after successful deletion
-  [] Dinosaur is no longer in database
+  [√] User can delete dinosaur from show page
+  [√] User gets confirmation if dinosaur is deleted
+  [√] User is taken to index after successful deletion
+  [√] Dinosaur is no longer in database
 
 } do
 
