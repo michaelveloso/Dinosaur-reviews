@@ -9,6 +9,22 @@ class DinosaursController < ApplicationController
     @dinosaur = Dinosaur.find(params[:id])
   end
 
+  def new
+    @dinosaur = Dinosaur.new
+  end
+
+  def create
+    @dinosaur = Dinosaur.new(dinosaur_params)
+
+    if @dinosaur.save
+      flash[:success] = 'Dinosaur added!'
+      redirect_to @dinosaur
+    else
+      flash[:errors] = @dinosaur.errors.full_messages.join(', ')
+      render :new
+    end
+  end
+
   def edit
     @dinosaur = Dinosaur.find(params[:id])
   end
@@ -24,7 +40,6 @@ class DinosaursController < ApplicationController
       render :edit
     end
   end
-
   private
 
   def dinosaur_params

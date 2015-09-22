@@ -14,16 +14,7 @@ feature 'user can create a new dinosaur', %{
 
 } do
 
-  feature "User is not signed in" do
-
-    scenario "User is asked to sign in before creating a dinosaur" do
-      visit new_dinosaur_path
-      expect(page).to have_content("Sign Up Sign In")
-    end
-
-  end
-
-  feature "User is signed in" do
+  feature "User can create dinosaurs" do
 
     before(:each) do
       user = FactoryGirl.create(:user)
@@ -37,16 +28,19 @@ feature 'user can create a new dinosaur', %{
       visit root_path
       click_link "Create a dinosaur"
       expect(page).to have_content("Create a Dinosaur!")
-
     end
 
     scenario "Form fields are visible" do
 
       visit new_dinosaur_path
+
       expect(page).to have_content("Name")
       expect(page).to have_content("Location found")
       expect(page).to have_content("Info url")
 
+      find_field("Name")
+      find_field("Location found")
+      find_field("Info url")
     end
 
     feature "User fills out form correctly" do
@@ -54,20 +48,24 @@ feature 'user can create a new dinosaur', %{
       scenario "User gets confirmation that dinosaur was added" do
         dinosaur = FactoryGirl.build(:dinosaur)
         visit new_dinosaur_path
+
         fill_in "Name", with: dinosaur.name
         fill_in "Location found", with: dinosaur.location_found
         fill_in "Info url", with: dinosaur.info_url
         click_button "Create a Dinosaur!"
+
         expect(page).to have_content("Dinosaur added!")
       end
 
       scenario "User is taken to show page" do
         dinosaur = FactoryGirl.build(:dinosaur)
         visit new_dinosaur_path
+
         fill_in "Name", with: dinosaur.name
         fill_in "Location found", with: dinosaur.location_found
         fill_in "Info url", with: dinosaur.info_url
         click_button "Create a Dinosaur!"
+
         expect(page).to have_content(dinosaur.name)
         expect(page).to have_content(dinosaur.location_found)
       end
@@ -75,11 +73,14 @@ feature 'user can create a new dinosaur', %{
       scenario "Dinosaur is visible in index" do
         dinosaur = FactoryGirl.build(:dinosaur)
         visit new_dinosaur_path
+
         fill_in "Name", with: dinosaur.name
         fill_in "Location found", with: dinosaur.location_found
         fill_in "Info url", with: dinosaur.info_url
         click_button "Create a Dinosaur!"
+
         visit root_path
+
         expect(page).to have_content(dinosaur.name)
       end
     end
