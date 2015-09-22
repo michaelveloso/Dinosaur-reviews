@@ -44,20 +44,24 @@ feature 'user can create a new dinosaur', %{
       scenario "User gets confirmation that dinosaur was added" do
         dinosaur = FactoryGirl.build(:dinosaur)
         visit new_dinosaur_path
+
         fill_in "Name", with: dinosaur.name
         fill_in "Location found", with: dinosaur.location_found
         fill_in "Info url", with: dinosaur.info_url
         click_button "Create a Dinosaur!"
+
         expect(page).to have_content("Dinosaur added!")
       end
 
       scenario "User is taken to show page" do
         dinosaur = FactoryGirl.build(:dinosaur)
         visit new_dinosaur_path
+
         fill_in "Name", with: dinosaur.name
         fill_in "Location found", with: dinosaur.location_found
         fill_in "Info url", with: dinosaur.info_url
         click_button "Create a Dinosaur!"
+
         expect(page).to have_content(dinosaur.name)
         expect(page).to have_content(dinosaur.location_found)
       end
@@ -65,11 +69,14 @@ feature 'user can create a new dinosaur', %{
       scenario "Dinosaur is visible in index" do
         dinosaur = FactoryGirl.build(:dinosaur)
         visit new_dinosaur_path
+
         fill_in "Name", with: dinosaur.name
         fill_in "Location found", with: dinosaur.location_found
         fill_in "Info url", with: dinosaur.info_url
         click_button "Create a Dinosaur!"
+
         visit root_path
+
         expect(page).to have_content(dinosaur.name)
       end
     end
