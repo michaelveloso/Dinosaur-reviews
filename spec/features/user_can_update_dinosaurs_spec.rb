@@ -44,6 +44,8 @@ feature 'user can update a dinosaur', %{
       find_field("Name")
       find_field("Location found")
       find_field("Info url")
+      find_field("Description")
+
     end
 
     scenario 'form is pre-filled with current values' do

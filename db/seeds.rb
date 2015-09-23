@@ -27,11 +27,13 @@ Dinosaur.create!(
   name: "Giganotosaurus",
   location_found: "South America",
   info_url: "https://en.wikipedia.org/wiki/Giganotosaurus",
-  user: TWO
+  user: TWO,
+  description: "This dinosaur is giganotic!"
 )
 Dinosaur.create!(
   name: "Spinosaurus",
   location_found: "North Africa",
   info_url: "https://en.wikipedia.org/wiki/Spinosaurus",
-  user: ONE
+  user: ONE,
+  description: "This dinosaur is spiny!"
 )
