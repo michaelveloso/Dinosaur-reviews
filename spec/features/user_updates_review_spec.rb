@@ -27,7 +27,7 @@ feature 'user updates review', %{
       FactoryGirl.create(:review, dinosaur_id: dino.id)
 
       visit dinosaur_path(dino)
-      click_link("Update")
+      click_button("Update")
       expect(page).to have_button("Update")
     end
 
@@ -36,9 +36,9 @@ feature 'user updates review', %{
       FactoryGirl.create(:review, dinosaur_id: dino.id)
 
       visit dinosaur_path(dino)
-      click_link("Update")
+      click_button("Update")
       fill_in("Body", with: "What a nice dinosaur!")
-      fill_in("Rating", with: 2)
+      select '2', from: 'Rating'
       click_button("Update")
 
       expect(page).to have_content("Review Updated!")
@@ -47,12 +47,11 @@ feature 'user updates review', %{
     scenario "User fills out form incorrectly" do
       review = FactoryGirl.create(:review)
       visit dinosaur_path(review.dinosaur)
-      click_link("Update")
-      fill_in("Body", with: "What a nice dinosaur!")
-      fill_in("Rating", with: "t")
+      click_button("Update")
+      fill_in("Body", with: "")
       click_button("Update")
 
-      expect(page).to have_content("Rating Must be between 1 and 5")
+      expect(page).to have_content("can't be blank")
     end
   end
 end

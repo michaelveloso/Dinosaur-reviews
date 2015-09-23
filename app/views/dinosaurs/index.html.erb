@@ -3,7 +3,10 @@
 <h1>List of Dinosaurs:</h1>
 <div class="dinosaur-links">
   <% @dinosaurs.each do |dinosaur|%>
-    <div class="dinosaur-link"><%= link_to dinosaur.name, dinosaur_path(dinosaur) %> </div>
+    <div class="dinosaur-link">
+      <%= link_to dinosaur.name, dinosaur_path(dinosaur) %><br>
+      <span class="dinosaur-desc"><%= dinosaur.description %></span>
+    </div>
   <% end %>
 </ul>
 

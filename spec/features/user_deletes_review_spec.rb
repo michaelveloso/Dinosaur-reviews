@@ -23,7 +23,7 @@ feature 'user deletes review', %{
       review = FactoryGirl.create(:review)
 
       visit dinosaur_path(review.dinosaur)
-      click_link "Delete"
+      click_button "Delete"
       expect(page).to have_content("Review deleted!")
       expect(page).to_not have_content(review.body)
     end
