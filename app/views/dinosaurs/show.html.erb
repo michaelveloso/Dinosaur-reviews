@@ -1,5 +1,30 @@
 <h1><%= @dinosaur.name %></h1>
 <p> Originally Found: <%= @dinosaur.location_found %></p>
 <p> <%= link_to "See More", @dinosaur.info_url %></p>
-<p> <%= link_to "Edit this dinosaur!", edit_dinosaur_path(@dinosaur) %></p>
-<p> <%= button_to "Exctinctify this dinosaur!", @dinosaur, class: 'button round tiny', method: :delete %> </p>
+<h3>
+User reviews:
+</h3>
+  <ul>
+    <% @dinosaur.reviews.each do |r| %>
+    <li>Reveiw: <%= r.body %>   |   Rating: <%= r.rating %>
+    <%= link_to "Update", edit_review_path(r.id) %>
+    <%= link_to "Delete", r, method: :delete %></li>
+    <% end %>
+  </ul>
+
+<% if user_signed_in? %>
+  <%= form_for [@dinosaur, @review] do |f| %>
+    <%= f.label :body %>
+    <%= f.text_field :body %>
+    <br>
+    <%= f.label :rating %>
+    <%= f.text_field :rating %>
+    <br>
+    <%= f.submit 'Submit' %>
+  <% end %>
+  <p> <%= link_to "Edit this dinosaur!", edit_dinosaur_path(@dinosaur) %></p>
+  <p> <%= button_to "Exctinctify this dinosaur!", @dinosaur, class: 'button round tiny', method: :delete %> </p>
+<% else %>
+  <%= link_to "Sign in", new_user_session_path %><br />
+  <%= link_to "Sign up", new_user_session_path %><br />
+<% end %>
