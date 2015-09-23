@@ -35,7 +35,6 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    # @dinosaur = Dinosaur.find(params[:id])
     @review = Review.find(params[:id])
     @review.destroy
     flash[:notice] = "Review deleted!"

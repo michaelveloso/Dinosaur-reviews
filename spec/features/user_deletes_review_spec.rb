@@ -20,10 +20,9 @@ feature 'user deletes review', %{
       click_button 'Log in'
     end
     scenario "visit details page, clicks delete button" do
-      dino = FactoryGirl.create(:dinosaur)
-      review = FactoryGirl.create(:review, dinosaur_id: dino.id)
+      review = FactoryGirl.create(:review)
 
-      visit dinosaur_path(dino)
+      visit dinosaur_path(review.dinosaur)
       click_link "Delete"
       expect(page).to have_content("Review deleted!")
       expect(page).to_not have_content(review.body)

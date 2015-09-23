@@ -17,9 +17,6 @@ feature 'user adds new review', %{
       dino = FactoryGirl.create(:dinosaur)
 
       visit dinosaur_path(dino)
-      fill_in("Body", with: "What a nice dinosaur!")
-      fill_in("Rating", with: 2)
-      click_button("Submit")
 
       expect(page).to have_content("Sign In")
     end
@@ -36,12 +33,11 @@ feature 'user adds new review', %{
     end
 
     scenario "visit details page to see name and details" do
-      dino = FactoryGirl.create(:dinosaur)
-      review = FactoryGirl.create(:review, dinosaur_id: dino.id)
+      review = FactoryGirl.create(:review)
 
-      visit dinosaur_path(dino)
+      visit dinosaur_path(review.dinosaur)
 
-      expect(page).to have_content(dino.name)
+      expect(page).to have_content(review.dinosaur.name)
       expect(page).to have_content(review.body)
     end
 

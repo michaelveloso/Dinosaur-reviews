@@ -21,13 +21,14 @@ feature 'user updates review', %{
       fill_in 'Password', with: user.password
       click_button 'Log in'
     end
+
     scenario "visit details page, clicks update button" do
       dino = FactoryGirl.create(:dinosaur)
       FactoryGirl.create(:review, dinosaur_id: dino.id)
 
       visit dinosaur_path(dino)
       click_link("Update")
-      expect(page).to have_content("Update Your Review")
+      expect(page).to have_button("Update")
     end
 
     scenario "User fills out form correctly" do
@@ -38,7 +39,7 @@ feature 'user updates review', %{
       click_link("Update")
       fill_in("Body", with: "What a nice dinosaur!")
       fill_in("Rating", with: 2)
-      click_button("Submit")
+      click_button("Update")
 
       expect(page).to have_content("Review Updated!")
     end
@@ -49,7 +50,7 @@ feature 'user updates review', %{
       click_link("Update")
       fill_in("Body", with: "What a nice dinosaur!")
       fill_in("Rating", with: "t")
-      click_button("Submit")
+      click_button("Update")
 
       expect(page).to have_content("Rating Must be between 1 and 5")
     end
