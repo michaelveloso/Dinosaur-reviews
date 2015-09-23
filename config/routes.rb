@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   resources :dinosaurs do
     resources :reviews, only: [:create, :new, :destroy]
   end
-  resources :reviews, only: [:edit, :update, :destroy]
+  resources :reviews, only: [:edit, :update, :destroy] do
+    resources :comments, only: [:new, :create]
+  end
 end
