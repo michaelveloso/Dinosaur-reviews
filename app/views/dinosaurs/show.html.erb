@@ -14,15 +14,16 @@ User reviews:
         <div class="review-block large-8 columns">
           <span class="review-info"><%= r.user.email %> rates <%= @dinosaur.name %> a <%= r.rating %></span><br>
           <span class="review-body"><%= r.body %></span>
-          <ul>
-            <% r.comments.each do |comment| %>
-            <li> <%= comment.body %> </li>
-            <% end %>
-            <% if user_signed_in? %>
-              <%= render 'layouts/comments' %>
-            <% end %>
 
-          </ul>
+            <div class="comments">
+              <% r.comments.each do |comment| %>
+                <%= comment.body %>
+              <% end %>
+              <% if user_signed_in? %>
+                <%= render 'layouts/comments' %>
+              <% end %>
+            </div>
+
         </div>
 
         <div class="large-1 columns end">
