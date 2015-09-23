@@ -1,5 +1,4 @@
 class CommentsController < ApplicationController
-
   def create
     @comment = Comment.new(comment_params)
     @review = Review.find(params[:review_id])
@@ -28,9 +27,9 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(
-    :body,
-    :review_id).merge(
-    user_id: current_user.id
+      :body,
+      :review_id).merge(
+      user_id: current_user.id
     )
   end
 end
