@@ -8,11 +8,18 @@ User reviews:
 </h3>
   <ul>
     <% @dinosaur.reviews.each do |r| %>
-    <li>Reveiw: <%= r.body %>   |   Rating: <%= r.rating %>
+    <% @review = r %>
+    <li>Review: <%= r.body %>   |   Rating: <%= r.rating %>
+      <ul>
+        <% r.comments.each do |comment| %>
+        <li> <%= comment.body %> </li>
+        <% end %>
+      </ul>
     <%= link_to "Update", edit_review_path(r.id) %>
     <%= link_to "Delete", r, method: :delete %></li>
-    <% end %>
   </ul>
+    <%= render 'layouts/comments' %>
+    <% end %>
 
 <% if user_signed_in? %>
   <%= form_for [@dinosaur, @review] do |f| %>
@@ -30,6 +37,3 @@ User reviews:
   <%= link_to "Sign in", new_user_session_path %><br />
   <%= link_to "Sign up", new_user_session_path %><br />
 <% end %>
-
-<p> <%= link_to "Edit this dinosaur!", edit_dinosaur_path(@dinosaur) %></p>
-<p> <%= button_to "Exctinctify this dinosaur!", @dinosaur, class: 'button round tiny', method: :delete %> </p>

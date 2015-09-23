@@ -27,33 +27,30 @@ feature 'user can add a comment to a review', %{
     end
 
     scenario 'User fills in form correctly' do
-      dinosaur = FactoryGirl.create(:dinosaur)
-      visit dinosaur_path(dinosaur)
+      review = FactoryGirl.create(:review)
+      visit dinosaur_path(review.dinosaur)
 
-      click_link 'Add Comment'
-
-      fill_in 'Body', with: "This review is awesome!"
+      fill_in 'Comment', with: "This review is awesome!"
       click_button 'Save comment'
       expect(page).to have_content("This review is awesome!")
     end
 
     scenario 'form should be displayed correctly' do
-      dinosaur = FactoryGirl.create(:dinosaur)
-      visit dinosaur_path(dinosaur)
+      review = FactoryGirl.create(:review)
+      visit dinosaur_path(review.dinosaur)
 
-      click_link 'Add Comment'
+      click_button 'Save comment'
 
       find_field("Body")
     end
 
     scenario 'form is filled out incorrectly' do
-      dinosaur = FactoryGirl.create(:dinosaur)
-      visit dinosaur_path(dinosaur)
+      review = FactoryGirl.create(:review)
+      visit dinosaur_path(review.dinosaur)
 
-      click_link 'Add Comment'
       click_button 'Save comment'
 
-      expect(page).to have_conent("can't be blank")
+      expect(page).to have_content("can't be blank")
     end
   end
 
