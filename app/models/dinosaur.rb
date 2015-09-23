@@ -7,4 +7,5 @@ class Dinosaur < ActiveRecord::Base
   validates :location_found, presence: true
   validates :info_url, presence: true
   validates :user, presence: true
+  validates :description, presence: true
 end

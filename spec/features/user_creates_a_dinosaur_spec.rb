@@ -31,16 +31,12 @@ feature 'user can create a new dinosaur', %{
     end
 
     scenario "Form fields are visible" do
-
       visit new_dinosaur_path
-
-      expect(page).to have_content("Name")
-      expect(page).to have_content("Location found")
-      expect(page).to have_content("Info url")
 
       find_field("Name")
       find_field("Location found")
       find_field("Info url")
+      find_field("Description")
     end
 
     feature "User fills out form correctly" do
@@ -52,6 +48,7 @@ feature 'user can create a new dinosaur', %{
         fill_in "Name", with: dinosaur.name
         fill_in "Location found", with: dinosaur.location_found
         fill_in "Info url", with: dinosaur.info_url
+        fill_in "Description", with: dinosaur.description
         click_button "Create a Dinosaur!"
 
         expect(page).to have_content("Dinosaur added!")
@@ -64,10 +61,10 @@ feature 'user can create a new dinosaur', %{
         fill_in "Name", with: dinosaur.name
         fill_in "Location found", with: dinosaur.location_found
         fill_in "Info url", with: dinosaur.info_url
+        fill_in "Description", with: dinosaur.description
         click_button "Create a Dinosaur!"
 
-        expect(page).to have_content(dinosaur.name)
-        expect(page).to have_content(dinosaur.location_found)
+        expect(current_path).to eq(dinosaur_path(Dinosaur.last))
       end
 
       scenario "Dinosaur is visible in index" do
@@ -77,6 +74,7 @@ feature 'user can create a new dinosaur', %{
         fill_in "Name", with: dinosaur.name
         fill_in "Location found", with: dinosaur.location_found
         fill_in "Info url", with: dinosaur.info_url
+        fill_in "Description", with: dinosaur.description
         click_button "Create a Dinosaur!"
 
         visit root_path
@@ -93,14 +91,16 @@ feature 'user can create a new dinosaur', %{
         expect(page).to have_content("Name can't be blank")
         expect(page).to have_content("Location found can't be blank")
         expect(page).to have_content("Info url can't be blank")
+        expect(page).to have_content("Description can't be blank")
       end
 
       scenario "User stays on form page" do
         visit new_dinosaur_path
         click_button "Create a Dinosaur!"
-        expect(page).to have_content("Name")
-        expect(page).to have_content("Location found")
-        expect(page).to have_content("Info url")
+        find_field("Name")
+        find_field("Location found")
+        find_field("Info url")
+        find_field("Description")
       end
 
     end

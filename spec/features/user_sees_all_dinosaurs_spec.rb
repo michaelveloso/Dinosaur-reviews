@@ -8,13 +8,15 @@ feature 'sees index page', %{
   Acceptance Criteria
   [√] - User sees an index if they visit '/dinosaurs'
   [√] - user sees an index if they visit the root
-  [] - Dinosaur names are links to their show pages
+  [√] - Dinosaur names are links to their show pages
+  [] - Dinosaur descriptions are visible
 
 } do
   scenario 'user visits index page' do
     dino = FactoryGirl.create(:dinosaur)
     visit dinosaurs_path
     expect(page).to have_content(dino.name)
+    expect(page).to have_content(dino.description)
   end
 
   scenario 'user sees index on root page' do
