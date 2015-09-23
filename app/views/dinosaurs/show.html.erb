@@ -10,13 +10,14 @@ User reviews:
     <% @dinosaur.reviews.each do |r| %>
     <% @review = r %>
     <li>Review: <%= r.body %>   |   Rating: <%= r.rating %>
+      <%= link_to "Update", edit_review_path(r.id) %>
+      <%= link_to "Delete", r, method: :delete %></li>
       <ul>
         <% r.comments.each do |comment| %>
-        <li> <%= comment.body %> </li>
+        <li> <%= comment.body  %>
+        <%= link_to "Update comment", edit_review_comment_path(review_id: @review.id, id: comment.id) %></li>
         <% end %>
       </ul>
-    <%= link_to "Update", edit_review_path(r.id) %>
-    <%= link_to "Delete", r, method: :delete %></li>
   </ul>
     <% if user_signed_in? %>
       <%= render 'layouts/comments' %>
