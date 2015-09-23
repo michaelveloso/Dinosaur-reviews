@@ -18,9 +18,10 @@ User reviews:
     <%= link_to "Update", edit_review_path(r.id) %>
     <%= link_to "Delete", r, method: :delete %></li>
   </ul>
-    <%= render 'layouts/comments' %>
+    <% if user_signed_in? %>
+      <%= render 'layouts/comments' %>
     <% end %>
-
+  <% end %>
 <% if user_signed_in? %>
   <%= form_for [@dinosaur, @review] do |f| %>
     <%= f.label :body %>

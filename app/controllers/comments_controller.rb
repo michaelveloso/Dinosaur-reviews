@@ -1,26 +1,15 @@
 class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
-    @review = Review.find(params[:review_id])
-    @dinosaur = @review.dinosaur
-    @comment.review = @review
+    @comment.review = review
 
     if @comment.save
       flash[:notice] = "Comment Added!"
-      redirect_to dinosaur_path(@dinosaur)
+      redirect_to dinosaur_path(dinosaur)
     else
       flash[:errors] = @comment.errors.full_messages.join(". ")
-      redirect_to dinosaur_path(@dinosaur)
+      redirect_to dinosaur_path(dinosaur)
     end
-  end
-
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
   end
 
   protected
@@ -29,7 +18,16 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(
       :body,
       :review_id).merge(
-      user_id: current_user.id
+        user_id: current_user.id,
+        review_id: review
     )
+  end
+
+  def review
+    Review.find(params[:review_id])
+  end
+
+  def dinosaur
+    review.dinosaur
   end
 end

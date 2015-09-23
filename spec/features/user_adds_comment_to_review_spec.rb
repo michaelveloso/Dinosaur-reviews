@@ -33,13 +33,13 @@ feature 'user can add a comment to a review', %{
       fill_in 'Comment', with: "This review is awesome!"
       click_button 'Save comment'
       expect(page).to have_content("This review is awesome!")
+      expect(page).to have_content("Comment Added!")
+
     end
 
     scenario 'form should be displayed correctly' do
       review = FactoryGirl.create(:review)
       visit dinosaur_path(review.dinosaur)
-
-      click_button 'Save comment'
 
       find_field("Body")
     end
@@ -60,7 +60,7 @@ feature 'user can add a comment to a review', %{
       dinosaur = FactoryGirl.create(:dinosaur)
       visit dinosaur_path(dinosaur)
 
-      expect(page).to_not have_content('Add Comment')
+      expect(page).to_not have_content('Save comment')
     end
   end
 end
