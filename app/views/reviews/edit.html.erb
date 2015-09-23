@@ -1,0 +1,15 @@
+<h1>Update Your Review</h1>
+<%= form_for [@dinosaur, @review] do |f| %>
+  <div class="large-1 columns">
+    <%= f.label :rating %>
+    <%= f.select :rating, [[1,1],[2,2],[3,3],[4,4],[5,5]], class: 'border-radius' %>
+  </div>
+  <div class="large-8 columns">
+    <%= f.label :body %>
+    <%= f.text_field :body %>
+  </div>
+  <br>
+  <div class="large-9 columns">
+    <%= f.submit 'Update', class: 'crud-buttons button expand round medium' %>
+  </div>
+<% end %>

@@ -1,0 +1,28 @@
+<h1 class="sub-header">Change this Dinosaur!</h1>
+
+<%= form_for(@dinosaur) do |form| %>
+  <div class="field column small-12">
+    <%= form.label :name, class: "text-input-label" %><br>
+    <%= form.text_field :name, class: "text-input-field", placeholder: @dinosaur.name %>
+  </div>
+  <div class="field column small-12">
+    <%= form.label :location_found, class: "text-input-label" %><br>
+    <%= form.text_field :location_found, class: "text-input-field", placeholder: @dinosaur.location_found%>
+  </div>
+  <div class="field column small-12">
+    <%= form.label :info_url, class: "text-input-label" %><br>
+    <%= form.text_field :info_url, class: "text-input-field", placeholder: @dinosaur.info_url%>
+  </div>
+  <div class="field column small-12">
+    <%= form.label :description, class: "text-input-label" %><br>
+    <%= form.text_field :description, class: "text-input-field", placeholder: @dinosaur.description%>
+  </div>
+  <br>
+  <div class="actions">
+    <%= form.submit "Change this dinosaur!", class: "crud-buttons button expand round medium" %>
+  </div>
+<% end %>
+
+
+<%= button_to "Back to #{@dinosaur.name}!", dinosaur_path(@dinosaur), class: 'crud-buttons button expand round medium', method: :get %>
+<%= button_to "Back to home", dinosaurs_path, class: 'crud-buttons button expand round medium', method: :get %>

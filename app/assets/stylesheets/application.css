@@ -11,7 +11,64 @@
  * file per style scope.
  *
  *= require_tree .
- *= require_self
  *= require foundation_and_overrides
+ *= require_self
 
  */
+.row {
+  margin: 30px;
+}
+
+.crud-buttons {
+  background-color: #bbb;
+  padding: 5px;
+}
+.crud-buttons.tiny {
+  background-color: #bbb;
+  padding: 5px;
+  margin: 10px 0px 0px 0px;
+}
+.tiny {
+  padding: 0px;
+}
+.crud-buttons:hover {
+  background: green;
+  box-shadow: 8px 8px 8px #777;
+}
+
+.dinosaur-link {
+  background-color: #999;
+  margin: 10px;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.dinosaur-desc {
+  margin-left: 10px;
+  font-size: 10pt;
+}
+.review {
+  background-color: #999;
+}
+.review-info {
+  font-size: 10pt;
+}
+.review-body {
+  margin-left: 10px;
+  font-size: 15pt;
+}
+.review-block {
+  margin: 10px;
+  background-color: #999;
+}
+.button-comment {
+  background-color: #bbb;
+  padding: 5px;
+  margin: 10px 10px 10px 0px;
+}
+.button-comment:hover {
+  background: green;
+  box-shadow: 8px 8px 8px #777;
+}
