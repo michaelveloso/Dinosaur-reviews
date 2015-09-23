@@ -16,8 +16,11 @@ User reviews:
           <span class="review-body"><%= r.body %></span>
 
             <div class="comments">
+              <span class="comment-header">Comments:</span>
+              <br>
               <% r.comments.each do |comment| %>
-                <%= comment.body %>
+                <span class="comment-body"><%= comment.body %> </span>
+                <span class="comment-user">(<%= comment.user.email %>) </span>
               <% end %>
               <% if user_signed_in? %>
                 <%= render 'layouts/comments' %>
@@ -43,7 +46,7 @@ User reviews:
       </div>
       <div class="large-8 columns">
         <%= f.label :body %>
-        <%= f.text_field :body %>
+        <%= f.text_field :body, value: "" %>
       </div>
       <br>
       <div class="large-9 columns">

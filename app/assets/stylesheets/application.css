@@ -64,14 +64,17 @@ a {
   padding-bottom: 10px;
   background-color: #999;
 }
-.button-comment {
-  background-color: #bbb;
+.button.button-comment {
+  background-color: #666;
   padding: 5px;
-  margin: 10px 10px 10px 0px;
+  margin: 0px 10px 10px 0px;
 }
 .button-comment:hover {
   background: green;
   box-shadow: 8px 8px 8px #777;
+}
+.comment-input-field {
+  margin-bottom: 0px;
 }
 .comments {
   background-color: #666;
@@ -82,4 +85,12 @@ a {
 }
 .comment-field {
   margin: 10px 0px 0px 0px;
+}
+.comment-user {
+  font-size: 8pt;
+}
+.comment-header {
+  font-size: 12pt;
+  font-weight: bold;
+  color: #999;
 }

@@ -1,7 +1,7 @@
 
 <%= form_for [@review, @comment] do |form| %>
   <div class="comment-field">
-    <%= form.text_field :body, class: "text-input-field", placeholder: 'Add your comment!' %>
+    <%= form.text_field :body, class: "text-input-field comment-input-field", placeholder: 'Add your comment!' %>
     <%= form.submit "Save comment", class: 'button-comment button expand round tiny'%>
   </div>
 
