@@ -19,12 +19,10 @@ class CommentsController < ApplicationController
 
   def update
     @comment = Comment.find(params[:id])
-    # @dinosaur = @comment.review.dinosaur
     if @comment.update_attributes(comment_params)
       flash[:notice] = "Comment updated!"
-      redirect_to dinosaur_path(@review.dinosaur_id)
+      redirect_to dinosaur_path(@comment.review.dinosaur_id)
     else
-      @review = @comment.review
       flash[:errors] = @comment.errors.full_messages.join(". ")
       render :edit
     end
@@ -36,7 +34,7 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(
       :body).merge(
         user_id: current_user.id,
-        review_id: review
+        review_id: review.id
     )
   end
 
