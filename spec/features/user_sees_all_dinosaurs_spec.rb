@@ -27,7 +27,7 @@ feature 'sees index page', %{
     dino = FactoryGirl.create(:dinosaur)
     visit root_path
     click_link (dino.name)
-    current_path.should == dinosaur_path(dino)
+    expect(current_path).to eq(dinosaur_path(dino))
   end
 
 end
