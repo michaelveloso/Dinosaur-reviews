@@ -45,7 +45,6 @@ feature 'user can update a dinosaur', %{
       find_field("Location found")
       find_field("Info url")
       find_field("Description")
-
     end
 
     scenario 'form is pre-filled with current values' do
@@ -55,6 +54,7 @@ feature 'user can update a dinosaur', %{
       find_field('Name').value.should eq(dinosaur.name)
       find_field('Location found').value.should eq(dinosaur.location_found)
       find_field('Info url').value.should eq(dinosaur.info_url)
+      find_field('Description').value.should eq(dinosaur.description)
     end
 
     scenario 'edit page has link to show page' do
@@ -63,7 +63,7 @@ feature 'user can update a dinosaur', %{
 
       click_button "Back to #{dinosaur.name}!"
 
-      current_path.should == dinosaur_path(dinosaur)
+      expect(current_path).to eq(dinosaur_path(dinosaur))
     end
 
     scenario 'edit page has link to index' do
@@ -72,7 +72,7 @@ feature 'user can update a dinosaur', %{
 
       click_button "Back to home"
 
-      current_path.should == dinosaurs_path
+      expect(current_path).to eq(dinosaurs_path)
     end
 
     feature 'user enters information correctly' do
@@ -84,6 +84,8 @@ feature 'user can update a dinosaur', %{
         fill_in "Name", with: "New Name"
         fill_in "Location found", with: "Idaho"
         fill_in "Info url", with: "www.example.com"
+        fill_in "Description", with: "new description"
+
         click_button "Change this dinosaur!"
 
         expect(page).to have_content("Dinosaur changed!")
@@ -96,11 +98,13 @@ feature 'user can update a dinosaur', %{
         fill_in "Name", with: "New Name"
         fill_in "Location found", with: "Idaho"
         fill_in "Info url", with: "www.example.com"
+        fill_in "Description", with: "new description"
         click_button "Change this dinosaur!"
 
-        current_path.should == dinosaur_path(dinosaur)
+        expect(current_path).to eq(dinosaur_path(dinosaur))
         expect(page).to have_content("New Name")
         expect(page).to have_content("Idaho")
+        expect(page).to have_content("new description")
       end
 
     end
@@ -114,11 +118,13 @@ feature 'user can update a dinosaur', %{
         fill_in "Name", with: ""
         fill_in "Location found", with: ""
         fill_in "Info url", with: ""
+        fill_in "Description", with: ""
         click_button "Change this dinosaur!"
 
         expect(page).to have_content("Name can't be blank")
         expect(page).to have_content("Location found can't be blank")
         expect(page).to have_content("Info url can't be blank")
+        expect(page).to have_content("Description can't be blank")
       end
 
       scenario 'user stays on page' do
@@ -128,11 +134,13 @@ feature 'user can update a dinosaur', %{
         fill_in "Name", with: ""
         fill_in "Location found", with: ""
         fill_in "Info url", with: ""
+        fill_in "Description", with: ""
         click_button "Change this dinosaur!"
 
         find_field("Name")
         find_field("Location found")
         find_field("Info url")
+        find_field("Description")
       end
     end
   end

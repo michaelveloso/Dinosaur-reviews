@@ -46,7 +46,7 @@ feature 'user adds new review', %{
 
       visit dinosaur_path(dino)
       fill_in("Body", with: "What a nice dinosaur!")
-      fill_in("Rating", with: 2)
+      select '2', from: 'Rating'
       click_button("Submit")
 
       expect(page).to have_content("Review added!")
@@ -56,7 +56,6 @@ feature 'user adds new review', %{
       dino = FactoryGirl.create(:dinosaur)
 
       visit dinosaur_path(dino)
-      fill_in("Body", with: "What a nice dinosaur!")
 
       click_button("Submit")
       expect(page).to have_content("can't be blank")
