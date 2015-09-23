@@ -26,7 +26,7 @@ feature 'user can create a new dinosaur', %{
 
     scenario "User can navigate to form from index" do
       visit root_path
-      click_link "Create a dinosaur"
+      click_button "Create a dinosaur"
       expect(page).to have_content("Create a Dinosaur!")
     end
 

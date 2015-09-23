@@ -1,10 +1,10 @@
+<%= image_tag "cute-dinosaur.png" %>
+
 <h1>List of Dinosaurs:</h1>
-<ul>
+<div class="dinosaur-links">
   <% @dinosaurs.each do |dinosaur|%>
-    <li>
-      <%= dinosaur.name %>
-    </li>
+    <div class="dinosaur-link"><%= link_to dinosaur.name, dinosaur_path(dinosaur) %> </div>
   <% end %>
 </ul>
 
-<%= link_to "Create a dinosaur!", new_dinosaur_path %>
+<%= button_to "Create a dinosaur!", new_dinosaur_path, class: 'crud-buttons button expand round medium', method: :get %>
