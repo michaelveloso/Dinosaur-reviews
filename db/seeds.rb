@@ -30,7 +30,7 @@ dino1 = Dinosaur.create!(
   user: TWO,
   description: "This dinosaur is giganotic!"
 )
-dino2 = Dinosaur.create!(
+Dinosaur.create!(
   name: "Spinosaurus",
   location_found: "North Africa",
   info_url: "https://en.wikipedia.org/wiki/Spinosaurus",
