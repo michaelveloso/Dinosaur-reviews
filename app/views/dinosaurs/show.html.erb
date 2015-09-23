@@ -2,15 +2,27 @@
 <p> Originally Found: <%= @dinosaur.location_found %></p>
 <p> Description: <%= @dinosaur.description %></p>
 <p> <%= link_to "See More", @dinosaur.info_url %></p>
+
+
 <h3>
 User reviews:
 </h3>
   <div class="reviews row">
     <% @dinosaur.reviews.reverse.each do |r| %>
+      <% @review = r %>
       <div class="row">
         <div class="review-block large-8 columns">
           <span class="review-info"><%= r.user.email %> rates <%= @dinosaur.name %> a <%= r.rating %></span><br>
           <span class="review-body"><%= r.body %></span>
+          <ul>
+            <% r.comments.each do |comment| %>
+            <li> <%= comment.body %> </li>
+            <% end %>
+            <% if user_signed_in? %>
+              <%= render 'layouts/comments' %>
+            <% end %>
+
+          </ul>
         </div>
 
         <div class="large-1 columns end">
@@ -20,7 +32,6 @@ User reviews:
       </div>
     <% end %>
   </div>
-
 
 <% if user_signed_in? %>
   <div class="row">

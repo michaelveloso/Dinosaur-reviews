@@ -63,3 +63,12 @@ a {
   margin: 10px;
   background-color: #999;
 }
+.button-comment {
+  background-color: #bbb;
+  padding: 5px;
+  margin: 10px 10px 10px 0px;
+}
+.button-comment:hover {
+  background: green;
+  box-shadow: 8px 8px 8px #777;
+}
