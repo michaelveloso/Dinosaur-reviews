@@ -33,7 +33,7 @@ feature 'user can update a dinosaur', %{
       dinosaur = FactoryGirl.create(:dinosaur)
       visit dinosaur_path(dinosaur)
 
-      click_link 'Edit this dinosaur!'
+      click_button 'Edit this dinosaur!'
       expect(page).to have_content("Change this Dinosaur!")
     end
 
@@ -61,7 +61,7 @@ feature 'user can update a dinosaur', %{
       dinosaur = FactoryGirl.create(:dinosaur)
       visit edit_dinosaur_path(dinosaur)
 
-      click_link "Back to dinosaur!"
+      click_button "Back to #{dinosaur.name}!"
 
       current_path.should == dinosaur_path(dinosaur)
     end
@@ -70,7 +70,7 @@ feature 'user can update a dinosaur', %{
       dinosaur = FactoryGirl.create(:dinosaur)
       visit edit_dinosaur_path(dinosaur)
 
-      click_link "Back to home"
+      click_button "Back to home"
 
       current_path.should == dinosaurs_path
     end

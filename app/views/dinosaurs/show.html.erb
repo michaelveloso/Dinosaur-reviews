@@ -15,16 +15,16 @@ User reviews:
 
 <% if user_signed_in? %>
   <%= form_for [@dinosaur, @review] do |f| %>
-    <%= f.label :body %>
-    <%= f.text_field :body %>
-    <br>
     <%= f.label :rating %>
     <%= f.text_field :rating %>
     <br>
-    <%= f.submit 'Submit' %>
+    <%= f.label :body %>
+    <%= f.text_field :body %>
+    <br>
+    <%= f.submit 'Submit', class: 'crud-buttons button expand round medium' %>
   <% end %>
-  <p> <%= link_to "Edit this dinosaur!", edit_dinosaur_path(@dinosaur) %></p>
-  <p> <%= button_to "Exctinctify this dinosaur!", @dinosaur, class: 'button round tiny', method: :delete %> </p>
+  <%= button_to "Edit this dinosaur!", edit_dinosaur_path(@dinosaur), class: 'crud-buttons button expand round medium', method: :get%>
+  <%= button_to "Exctinctify this dinosaur!", @dinosaur, class: 'crud-buttons button expand round medium', method: :delete %>
 <% else %>
   <%= link_to "Sign in", new_user_session_path %><br />
   <%= link_to "Sign up", new_user_session_path %><br />
