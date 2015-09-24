@@ -8,6 +8,11 @@ class UserSeeder
       email: "someone@gmail.com",
       password: "password",
       password_confirmation: "password"
+    }, {
+      email: "admin@admin.com",
+      password: "password",
+      password_confirmation: "password",
+      admin: true
     }
   ]
   def self.seed!
