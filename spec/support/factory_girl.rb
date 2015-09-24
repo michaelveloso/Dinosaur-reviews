@@ -21,4 +21,11 @@ FactoryGirl.define do
     dinosaur
     user
   end
+
+  factory :comment do
+    body "this one's great!"
+    review
+    user
+  end
+
 end

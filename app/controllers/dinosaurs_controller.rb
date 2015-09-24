@@ -10,6 +10,7 @@ class DinosaursController < ApplicationController
     @review = Review.new
     @reviews = @dinosaur.reviews
     @comment = Comment.new
+    @comments = @review.comments
   end
 
   def destroy

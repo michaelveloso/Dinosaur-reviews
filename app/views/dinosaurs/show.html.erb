@@ -20,14 +20,13 @@ User reviews:
             <% r.comments.each do |comment| %>
               <span class="comment-body"><%= comment.body %> </span>
               <span class="comment-user">(<%= comment.user.email %>) </span>
+              <%= button_to "Update comment", edit_review_comment_path(review_id: @review.id, id: comment.id), method: :get %></li>
             <% end %>
-          </div>
-
-          <% if user_signed_in? %>
-            <%= render 'layouts/comments' %>
-          <% end %>
+            <% if user_signed_in? %>
+              <%= render 'layouts/comments' %>
+            <% end %>
+          </ul>
         </div>
-
         <div class="large-1 columns end">
           <%= button_to "Update", edit_review_path(r.id), class: 'crud-buttons button expand round tiny', method: :get %>
           <%= button_to "Delete", r, method: :delete, class: 'crud-buttons button expand round tiny' %>
