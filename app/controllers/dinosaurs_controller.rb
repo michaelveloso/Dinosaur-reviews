@@ -14,18 +14,6 @@ class DinosaursController < ApplicationController
     @comments = @review.comments
   end
 
-  def destroy
-    @dinosaur = Dinosaur.find(params[:id])
-    if @dinosaur.destroy
-      flash[:success] = 'Dinosaur extinctified!'
-      redirect_to dinosaurs_path
-    else
-      flash[:errors] = @dinosaur.errors.full_messages.join(', ')
-      redirect_to @dinosaur
-    end
-
-  end
-
   def new
     @dinosaur = Dinosaur.new
   end
