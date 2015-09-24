@@ -2,6 +2,7 @@ class Review < ActiveRecord::Base
   belongs_to :dinosaur
   belongs_to :user
   has_many :comments
+  acts_as_votable
 
   validates :dinosaur, presence: true
   validates :body, presence: true
