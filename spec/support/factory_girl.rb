@@ -27,5 +27,4 @@ FactoryGirl.define do
     review
     user
   end
-
 end
