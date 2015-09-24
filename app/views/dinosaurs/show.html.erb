@@ -1,40 +1,58 @@
 <h1><%= @dinosaur.name %></h1>
 <p> Originally Found: <%= @dinosaur.location_found %></p>
+<p> Description: <%= @dinosaur.description %></p>
 <p> <%= link_to "See More", @dinosaur.info_url %></p>
 
 
 <h3>
 User reviews:
 </h3>
-  <ul>
-    <% @dinosaur.reviews.each do |r| %>
-    <% @review = r %>
-    <li>Review: <%= r.body %>   |   Rating: <%= r.rating %>
-      <%= link_to "Update", edit_review_path(r.id) %>
-      <%= link_to "Delete", r, method: :delete %></li>
-      <ul>
-        <% r.comments.each do |comment| %>
-        <li> <%= comment.body  %>
-        <%= link_to "Update comment", edit_review_comment_path(review_id: @review.id, id: comment.id) %></li>
-        <% end %>
-      </ul>
-  </ul>
-    <% if user_signed_in? %>
-      <%= render 'layouts/comments' %>
+  <div class="reviews row">
+    <% @dinosaur.reviews.reverse.each do |r| %>
+      <% @review = r %>
+      <div class="row">
+        <div class="review-block large-8 columns">
+          <span class="review-info"><%= r.user.email %> rates <%= @dinosaur.name %> a <%= r.rating %></span><br>
+          <span class="review-body"><%= r.body %></span>
+          <ul>
+            <% r.comments.each do |comment| %>
+              <li> <%= comment.body %> </li>
+              <%= button_to "Update comment", edit_review_comment_path(review_id: @review.id, id: comment.id), method: :get %></li>
+            <% end %>
+            <% if user_signed_in? %>
+              <%= render 'layouts/comments' %>
+            <% end %>
+          </ul>
+        </div>
+        <div class="large-1 columns end">
+          <%= button_to "Update", edit_review_path(r.id), class: 'crud-buttons button expand round tiny', method: :get %>
+          <%= button_to "Delete", r, method: :delete, class: 'crud-buttons button expand round tiny' %>
+        </div>
+      </div>
     <% end %>
-  <% end %>
+  </div>
+
 <% if user_signed_in? %>
-  <%= form_for [@dinosaur, @review] do |f| %>
-    <%= f.label :rating %>
-    <%= f.text_field :rating %>
-    <br>
-    <%= f.label :body %>
-    <%= f.text_field :body %>
-    <br>
-    <%= f.submit 'Submit', class: 'crud-buttons button expand round medium' %>
-  <% end %>
-  <%= button_to "Edit this dinosaur!", edit_dinosaur_path(@dinosaur), class: 'crud-buttons button expand round medium', method: :get%>
-  <%= button_to "Exctinctify this dinosaur!", @dinosaur, class: 'crud-buttons button expand round medium', method: :delete %>
+  <div class="row">
+    <%= form_for [@dinosaur, @review] do |f| %>
+      <div class="large-1 columns">
+        <%= f.label :rating %>
+        <%= f.select :rating, [[1,1],[2,2],[3,3],[4,4],[5,5]], class: 'border-radius' %>
+      </div>
+      <div class="large-8 columns">
+        <%= f.label :body %>
+        <%= f.text_field :body %>
+      </div>
+      <br>
+      <div class="large-9 columns">
+        <%= f.submit 'Submit', class: 'crud-buttons button expand round medium' %>
+      </div>
+    <% end %>
+    <div class="large-9 columns">
+      <%= button_to "Edit this dinosaur!", edit_dinosaur_path(@dinosaur), class: 'crud-buttons button expand round medium', method: :get%>
+      <%= button_to "Exctinctify this dinosaur!", @dinosaur, class: 'crud-buttons button expand round medium', method: :delete %>
+    </div>
+  </div>
 <% else %>
   <%= link_to "Sign in", new_user_session_path %><br />
   <%= link_to "Sign up", new_user_session_path %><br />

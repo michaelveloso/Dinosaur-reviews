@@ -23,15 +23,42 @@ TWO = User.create!(
   password_confirmation: "password"
 )
 
-Dinosaur.create!(
+dino1 = Dinosaur.create!(
   name: "Giganotosaurus",
   location_found: "South America",
   info_url: "https://en.wikipedia.org/wiki/Giganotosaurus",
-  user: TWO
+  user: TWO,
+  description: "This dinosaur is giganotic!"
 )
 Dinosaur.create!(
   name: "Spinosaurus",
   location_found: "North Africa",
   info_url: "https://en.wikipedia.org/wiki/Spinosaurus",
-  user: ONE
+  user: ONE,
+  description: "This dinosaur is spiny!"
+)
+Dinosaur.create!(
+  name: "Tyrannosaurus",
+  location_found: "Western North America",
+  info_url: "https://en.wikipedia.org/wiki/Tyrannosaurus",
+  user: TWO,
+  description: "This dinosaur has itty bitty arms!"
+)
+Review.create!(
+  dinosaur: dino1,
+  user: ONE,
+  rating: 5,
+  body: "Giga is the coolest, he's totes my favs"
+)
+Review.create!(
+  dinosaur: dino1,
+  user: ONE,
+  rating: 1,
+  body: "Giga is the worst, he's totes not my favs"
+)
+Review.create!(
+  dinosaur: dino1,
+  user: ONE,
+  rating: 3,
+  body: "Giga is really just alright..."
 )

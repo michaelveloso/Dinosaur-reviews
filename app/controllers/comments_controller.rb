@@ -19,6 +19,7 @@ class CommentsController < ApplicationController
 
   def update
     @comment = Comment.find(params[:id])
+    @review = Review.find(params[:review_id])
     if @comment.update_attributes(comment_params)
       flash[:notice] = "Comment updated!"
       redirect_to dinosaur_path(@comment.review.dinosaur_id)

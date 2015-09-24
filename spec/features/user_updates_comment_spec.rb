@@ -33,19 +33,22 @@ feature 'user updates comment', %{
       comment = FactoryGirl.create(:comment)
 
       visit dinosaur_path(comment.review.dinosaur)
+      click_button("Update comment")
 
-      fill_in("Body", with: comment.body)
-      click_link("Update comment")
+      fill_in("Comment", with: comment.body)
+      click_button("Update comment")
 
-      expect(page).to have_content("Comment Updated!")
+      expect(page).to have_content("Comment updated!")
     end
 
     scenario "User fills out form incorrectly" do
       comment = FactoryGirl.create(:comment)
 
       visit dinosaur_path(comment.review.dinosaur)
-
-      click_link("Update comment")
+      click_button("Update comment")
+      
+      fill_in("Comment", with: nil)
+      click_button("Update comment")
 
       expect(page).to have_content("can't be blank")
     end

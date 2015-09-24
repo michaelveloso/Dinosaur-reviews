@@ -18,6 +18,7 @@ feature 'user visits show page', %{
 
     expect(page).to have_content(dino.name)
     expect(page).to have_content(dino.location_found)
+    expect(page).to have_content(dino.description)
 
   end
 

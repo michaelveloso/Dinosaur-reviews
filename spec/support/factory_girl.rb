@@ -12,6 +12,7 @@ FactoryGirl.define do
     location_found "South America"
     info_url "https://www.en.wikipedia.org/wiki/Giganotosaurus"
     user
+    description "dino description"
   end
 
   factory :review do
