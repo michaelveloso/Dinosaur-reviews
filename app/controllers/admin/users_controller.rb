@@ -5,6 +5,13 @@ class Admin::UsersController < ApplicationController
     @users = User.all
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[:notice] = "User extinctified!"
+    redirect_to admin_users_path
+  end
+
   private
   def authorize_user
     if !user_signed_in? || !current_user.admin?

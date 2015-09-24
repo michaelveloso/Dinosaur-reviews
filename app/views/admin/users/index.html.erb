@@ -5,5 +5,6 @@
     <% if user.admin? %>
       <b>admin</b>
     <% end %>
+    <%= button_to "Exctinctify #{user.email}!", admin_user_path(user), class: "crud-buttons button expand round medium user#{user.id}", method: :delete %>
   </div>
 <% end %>
