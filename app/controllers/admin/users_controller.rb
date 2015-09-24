@@ -8,7 +8,8 @@ class Admin::UsersController < ApplicationController
   private
   def authorize_user
     if !user_signed_in? || !current_user.admin?
-      raise ActionController::RoutingError.new("You don't have privileges to do that.")
+      flash[:errors] = "You don't have the privileges to do that!"
+      redirect_to dinosaurs_path
     end
   end
 end
