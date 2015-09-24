@@ -20,6 +20,17 @@ User reviews:
         <div class="review-block large-8 columns">
           <span class="review-info"><%= r.user.email %> rates <%= @dinosaur.name %> a <%= r.rating %></span><br>
           <span class="review-body"><%= r.body %></span>
+          <%= link_to like_dinosaur_review_path(dinosaur_id: r.dinosaur_id, id: r.id), method: :put do %>
+            Upvote
+            <%= r.get_upvotes.size %>
+          <% end %>
+          <%= link_to unvote_dinosaur_review_path(dinosaur_id: r.dinosaur_id, id: r.id), method: :put do %>
+            Unvote
+          <% end %>
+          <%= link_to dislike_dinosaur_review_path(dinosaur_id: r.dinosaur_id, id: r.id), method: :put do %>
+            Downvote
+            <%= r.get_downvotes.size %>
+          <% end %>
           <div class="comments">
             <span class="comment-header">Comments:</span>
             <br>
@@ -70,6 +81,3 @@ User reviews:
   <%= link_to "Sign in", new_user_session_path %><br />
   <%= link_to "Sign up", new_user_session_path %><br />
 <% end %>
-
-@links.each do |link|
-  = link_to "upvote", like_link_path(link), method: :put
