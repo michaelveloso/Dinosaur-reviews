@@ -35,10 +35,10 @@ feature 'user updates comment', %{
       visit dinosaur_path(comment.review.dinosaur)
       click_button("Update comment")
 
-      fill_in("Comment", with: comment.body)
+      fill_in("Comment", with: "Howdy Partner!")
       click_button("Update comment")
 
-      expect(page).to have_content("Comment updated!")
+      expect(page).to have_content("Howdy Partner!")
     end
 
     scenario "User fills out form incorrectly" do
