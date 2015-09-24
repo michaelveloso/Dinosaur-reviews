@@ -46,7 +46,6 @@ feature 'user updates comment', %{
 
       visit dinosaur_path(comment.review.dinosaur)
       click_button("Update comment")
-      
       fill_in("Comment", with: nil)
       click_button("Update comment")
 
