@@ -10,9 +10,7 @@ class DinosaursController < ApplicationController
     @new_review = Review.new
     @reviews = @dinosaur.reviews
     @comment = Comment.new
-<<<<<<< HEAD
     @review = Review.new
-=======
     @comments = @review.comments
   end
 
@@ -25,7 +23,7 @@ class DinosaursController < ApplicationController
       flash[:errors] = @dinosaur.errors.full_messages.join(', ')
       redirect_to @dinosaur
     end
->>>>>>> 287286f40880ca60ff1e04aa669628cbfd520a6f
+
   end
 
   def new
