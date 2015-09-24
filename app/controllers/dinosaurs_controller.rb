@@ -56,7 +56,6 @@ class DinosaursController < ApplicationController
     end
   end
 
-
   private
 
   def dinosaur_params
