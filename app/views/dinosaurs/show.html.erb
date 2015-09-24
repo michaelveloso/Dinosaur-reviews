@@ -14,9 +14,12 @@ User reviews:
         <div class="review-block large-8 columns">
           <span class="review-info"><%= r.user.email %> rates <%= @dinosaur.name %> a <%= r.rating %></span><br>
           <span class="review-body"><%= r.body %></span>
-          <ul>
+          <div class="comments">
+            <span class="comment-header">Comments:</span>
+            <br>
             <% r.comments.each do |comment| %>
-              <li> <%= comment.body %> </li>
+              <span class="comment-body"><%= comment.body %> </span>
+              <span class="comment-user">(<%= comment.user.email %>) </span>
               <%= button_to "Update comment", edit_review_comment_path(review_id: @review.id, id: comment.id), method: :get %></li>
             <% end %>
             <% if user_signed_in? %>
@@ -41,7 +44,7 @@ User reviews:
       </div>
       <div class="large-8 columns">
         <%= f.label :body %>
-        <%= f.text_field :body %>
+        <%= f.text_field :body, value: "" %>
       </div>
       <br>
       <div class="large-9 columns">
