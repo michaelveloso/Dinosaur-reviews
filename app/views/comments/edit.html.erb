@@ -1,0 +1,13 @@
+<h1 class="sub-header">Update this Comment!</h1>
+
+<%= form_for [@review, @comment] do |form| %>
+  <div class="field column small-12">
+    <%= form.label :body, "Comment", class: "text-input-label" %><br>
+    <%= form.text_field :body, class: "text-input-field", placeholder: @comment.body %>
+
+  </div>
+  <br>
+  <div class="actions">
+    <%= form.submit "Update comment!", class: "crud-buttons button expand round medium" %>
+  </div>
+<% end %>
