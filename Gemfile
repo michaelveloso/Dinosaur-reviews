@@ -63,3 +63,4 @@ gem 'shoulda-matchers', group: [:development, :test], require: false
 gem 'devise'
 gem 'foundation-rails'
 gem 'quiet_assets'
+gem 'rails_12factor', group: :production
