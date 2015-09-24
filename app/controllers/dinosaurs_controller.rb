@@ -10,6 +10,7 @@ class DinosaursController < ApplicationController
     @new_review = Review.new
     @reviews = @dinosaur.reviews
     @comment = Comment.new
+    @review = Review.new
   end
 
   def new
