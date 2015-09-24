@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   resources :dinosaurs do
     resources :reviews, only: [:create, :new, :destroy, :edit, :update] do
       member do
-        put "like", to: "posts#upvote"
-        put "dislike", to: "posts#downvote"
+        put "like", to: "reviews#upvote"
+        put "dislike", to: "reviews#downvote"
+        put "unvote", to: "reviews#unvote"
       end
     end
   end
