@@ -41,7 +41,7 @@ User reviews:
 
 <% if user_signed_in? %>
   <div class="row">
-    <%= form_for [@dinosaur, @review], {action: dinosaur_reviews_path(@dinosaur)} do |f| %>
+    <%= form_for [@dinosaur, @new_review], {action: dinosaur_reviews_path(@dinosaur)} do |f| %>
       <div class="large-1 columns">
         <%= f.label :rating %>
         <%= f.select :rating, [[1,1],[2,2],[3,3],[4,4],[5,5]], class: 'border-radius', method: :post %>

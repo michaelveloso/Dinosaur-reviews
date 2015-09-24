@@ -7,7 +7,7 @@ class DinosaursController < ApplicationController
 
   def show
     @dinosaur = Dinosaur.find(params[:id])
-    @review = Review.new
+    @new_review = Review.new
     @reviews = @dinosaur.reviews
     @comment = Comment.new
   end

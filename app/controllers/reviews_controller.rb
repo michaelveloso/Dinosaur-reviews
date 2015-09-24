@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @reviews = Review.all
+    @reviews = Review.new
   end
 
   def create
