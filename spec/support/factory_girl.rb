@@ -6,6 +6,7 @@ FactoryGirl.define do
     password 'password'
     password_confirmation 'password'
   end
+
   factory :dinosaur do
     sequence(:name) { |n| "Giganotosaurus#{n}" }
     location_found "South America"
@@ -21,4 +22,9 @@ FactoryGirl.define do
     user
   end
 
+  factory :comment do
+    body "this one's great!"
+    review
+    user
+  end
 end

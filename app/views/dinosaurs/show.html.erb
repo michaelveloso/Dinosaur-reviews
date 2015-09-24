@@ -26,6 +26,7 @@ User reviews:
             <% r.comments.each do |comment| %>
               <span class="comment-body"><%= comment.body %> </span>
               <span class="comment-user">(<%= comment.user.email %>) </span>
+              <%= button_to "Update comment", edit_review_comment_path(review_id: @review.id, id: comment.id), method: :get %>
               <br>
             <% end %>
           </div>
@@ -69,3 +70,6 @@ User reviews:
   <%= link_to "Sign in", new_user_session_path %><br />
   <%= link_to "Sign up", new_user_session_path %><br />
 <% end %>
+
+@links.each do |link|
+  = link_to "upvote", like_link_path(link), method: :put
