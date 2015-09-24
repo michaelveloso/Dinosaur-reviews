@@ -1,13 +1,13 @@
 class UserSeeder
   USERS = [
     {
-        email: "name@gmail.com",
-        password: "password",
-        password_confirmation: "password"
+      email: "name@gmail.com",
+      password: "password",
+      password_confirmation: "password"
     }, {
-        email: "someone@gmail.com",
-        password: "password",
-        password_confirmation: "password"
+      email: "someone@gmail.com",
+      password: "password",
+      password_confirmation: "password"
     }
   ]
   def self.seed!
