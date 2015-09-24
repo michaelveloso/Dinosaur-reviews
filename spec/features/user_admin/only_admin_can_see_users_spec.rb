@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'admin can see users', %Q{
+feature 'admin can see users', %{
   As an administrator
   I want to see all the users
   So that I can manage members

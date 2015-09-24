@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'user signs in as admin', %Q{
+feature 'user signs in as admin', %{
   As an administrator
   I want to sign in
   So that I can have access to admin priveleges
