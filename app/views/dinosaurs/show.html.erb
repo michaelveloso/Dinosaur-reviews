@@ -1,8 +1,14 @@
-<h1><%= @dinosaur.name %></h1>
-<p> Originally Found: <%= @dinosaur.location_found %></p>
-<p> Description: <%= @dinosaur.description %></p>
-<p> <%= link_to "See More", @dinosaur.info_url %></p>
-
+<div class="row">
+  <div class="dino-info large-4 columns">
+    <h1><%= @dinosaur.name %></h1>
+    <p> Originally Found: <%= @dinosaur.location_found %></p>
+    <p> Description: <%= @dinosaur.description %></p>
+    <p> <%= link_to "See More", @dinosaur.info_url %></p>
+  </div>
+  <div class="dino-image large-5 columns end">
+    <%= image_tag "giganotosaurus.jpg" %>
+  </div>
+</div>
 
 <h3>
 User reviews:
@@ -20,13 +26,16 @@ User reviews:
             <% r.comments.each do |comment| %>
               <span class="comment-body"><%= comment.body %> </span>
               <span class="comment-user">(<%= comment.user.email %>) </span>
-              <%= button_to "Update comment", edit_review_comment_path(review_id: @review.id, id: comment.id), method: :get %></li>
+              <%= button_to "Update comment", edit_review_comment_path(review_id: @review.id, id: comment.id), method: :get %>
+              <br>
             <% end %>
-            <% if user_signed_in? %>
-              <%= render 'layouts/comments' %>
-            <% end %>
-          </ul>
+          </div>
+
+          <% if user_signed_in? %>
+            <%= render 'layouts/comments' %>
+          <% end %>
         </div>
+
         <div class="large-1 columns end">
           <%= button_to "Update", edit_review_path(r.id), class: 'crud-buttons button expand round tiny', method: :get %>
           <%= button_to "Delete", r, method: :delete, class: 'crud-buttons button expand round tiny' %>
@@ -37,14 +46,15 @@ User reviews:
 
 <% if user_signed_in? %>
   <div class="row">
-    <%= form_for [@dinosaur, @review] do |f| %>
+    <%= form_for [@dinosaur, @new_review], {action: dinosaur_reviews_path(@dinosaur)} do |f| %>
       <div class="large-1 columns">
         <%= f.label :rating %>
-        <%= f.select :rating, [[1,1],[2,2],[3,3],[4,4],[5,5]], class: 'border-radius' %>
+        <%= f.select :rating, [[1,1],[2,2],[3,3],[4,4],[5,5]], class: 'border-radius', method: :post %>
       </div>
       <div class="large-8 columns">
         <%= f.label :body %>
-        <%= f.text_field :body, value: "" %>
+        <%= f.text_field :body, placeholder: "Write a new review for #{@dinosaur.name}" %>
+
       </div>
       <br>
       <div class="large-9 columns">
@@ -60,3 +70,6 @@ User reviews:
   <%= link_to "Sign in", new_user_session_path %><br />
   <%= link_to "Sign up", new_user_session_path %><br />
 <% end %>
+
+@links.each do |link|
+  = link_to "upvote", like_link_path(link), method: :put

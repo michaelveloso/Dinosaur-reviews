@@ -4,7 +4,6 @@ ruby '2.2.1'
 
 gem 'dotenv-rails'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 gem 'pry'
@@ -63,3 +62,4 @@ gem 'shoulda-matchers', group: [:development, :test], require: false
 gem 'devise'
 gem 'foundation-rails'
 gem 'quiet_assets'
+gem 'rails_12factor', group: :production

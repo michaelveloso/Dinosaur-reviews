@@ -7,21 +7,11 @@ class DinosaursController < ApplicationController
 
   def show
     @dinosaur = Dinosaur.find(params[:id])
-    @review = Review.new
+    @new_review = Review.new
     @reviews = @dinosaur.reviews
     @comment = Comment.new
+    @review = Review.new
     @comments = @review.comments
-  end
-
-  def destroy
-    @dinosaur = Dinosaur.find(params[:id])
-    if @dinosaur.destroy
-      flash[:success] = 'Dinosaur extinctified!'
-      redirect_to dinosaurs_path
-    else
-      flash[:errors] = @dinosaur.errors.full_messages.join(', ')
-      redirect_to @dinosaur
-    end
   end
 
   def new
@@ -53,6 +43,17 @@ class DinosaursController < ApplicationController
     else
       flash[:errors] = @dinosaur.errors.full_messages.join(', ')
       render :edit
+    end
+  end
+
+  def destroy
+    @dinosaur = Dinosaur.find(params[:id])
+    if @dinosaur.destroy
+      flash[:success] = 'Dinosaur extinctified!'
+      redirect_to dinosaurs_path
+    else
+      flash[:errors] = @dinosaur.errors.full_messages.join(', ')
+      redirect_to @dinosaur
     end
   end
 

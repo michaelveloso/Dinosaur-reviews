@@ -2,20 +2,22 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @reviews = Review.all
+    @review = Review.new
   end
 
   def create
-    @review = Review.new(review_params)
+    @new_review = Review.new(review_params)
     @dinosaur = Dinosaur.find(params[:dinosaur_id])
-    @review.dinosaur = @dinosaur
+    @new_review.dinosaur = @dinosaur
 
-    if @review.save
+    if @new_review.save
       flash[:notice] = "Review added!"
       redirect_to dinosaur_path(@dinosaur)
     else
-      flash[:errors] = @review.errors.full_messages.join(". ")
-      render :'dinosaurs/show'
+      flash[:errors] = @new_review.errors.full_messages.join(". ")
+      @new_review = Review.new
+      @comment = Comment.new
+      render 'dinosaurs/show'
     end
   end
 
