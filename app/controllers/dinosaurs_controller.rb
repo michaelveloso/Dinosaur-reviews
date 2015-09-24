@@ -12,17 +12,6 @@ class DinosaursController < ApplicationController
     @comment = Comment.new
   end
 
-  def destroy
-    @dinosaur = Dinosaur.find(params[:id])
-    if @dinosaur.destroy
-      flash[:success] = 'Dinosaur extinctified!'
-      redirect_to dinosaurs_path
-    else
-      flash[:errors] = @dinosaur.errors.full_messages.join(', ')
-      redirect_to @dinosaur
-    end
-  end
-
   def new
     @dinosaur = Dinosaur.new
   end
@@ -55,6 +44,16 @@ class DinosaursController < ApplicationController
     end
   end
 
+  def destroy
+    @dinosaur = Dinosaur.find(params[:id])
+    if @dinosaur.destroy
+      flash[:success] = 'Dinosaur extinctified!'
+      redirect_to dinosaurs_path
+    else
+      flash[:errors] = @dinosaur.errors.full_messages.join(', ')
+      redirect_to @dinosaur
+    end
+  end
 
   private
 
