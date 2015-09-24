@@ -20,7 +20,6 @@ feature 'admin can delete users', %{
 
   scenario "Admin can see delete button on user index page" do
     user1 = FactoryGirl.create(:user)
-    user2 = FactoryGirl.create(:user)
     visit admin_users_path
     find_button("Exctinctify #{user1.email}!")
   end
@@ -35,10 +34,12 @@ feature 'admin can delete users', %{
 
   scenario "Deleted user does not appear on index page" do
     user1 = FactoryGirl.create(:user)
+    user2 = FactoryGirl.create(:user)
     visit(admin_users_path)
     click_button("Exctinctify #{user1.email}!")
 
     expect(page).to_not have_content(user1.email)
+    expect(page).to have_content(user2.email)
   end
 
   scenario "Deleted user is no longe in database" do
