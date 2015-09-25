@@ -46,7 +46,13 @@ class ReviewsController < ApplicationController
   def upvote
     @review = Review.find(params[:id])
     @review.upvote_by current_user
-    redirect_to :back
+    respond_to do |format|
+      format.html
+      format.json do
+        upvotes = @review.get_upvotes.size
+        render json: [upvotes]
+      end
+    end
   end
 
   def downvote
