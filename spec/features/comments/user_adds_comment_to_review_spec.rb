@@ -41,7 +41,7 @@ feature 'user can add a comment to a review', %{
       review = FactoryGirl.create(:review)
       visit dinosaur_path(review.dinosaur)
 
-      find_field("Body")
+      find_field("Comment")
     end
 
     scenario 'form is filled out incorrectly' do
