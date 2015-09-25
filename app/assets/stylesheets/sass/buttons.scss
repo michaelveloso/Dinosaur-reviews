@@ -13,21 +13,23 @@
  *= require_tree .
  *= require foundation_and_overrides
  *= require_self
-
  */
+
 .tiny {
   padding: 0px;
 }
-/* this covers the Submit Review, Edit Dinosaur, and Extinctify Dinosaur buttons*/
+
 @mixin buttonstyles($bg-color: #bbb) {
   background-color: $bg-color;
   padding: 5px
 }
+
 @mixin buttonhovers($hover-color) {
   background-color: $hover-color;
   padding: 5px;
   box-shadow: 8px 8px 8px #777;
 }
+
 input.show-crud-buttons {
   @include buttonstyles;
   &:hover{
