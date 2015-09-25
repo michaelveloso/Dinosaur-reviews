@@ -14,7 +14,7 @@
 User reviews:
 </h3>
   <div class="reviews row">
-    <% @dinosaur.reviews.reverse.each do |r| %>
+    <% @reviews.each do |r| %>
       <% @review = r %>
       <div class="row">
         <div class="review-block large-8 columns">
@@ -53,6 +53,7 @@ User reviews:
         </div>
       </div>
     <% end %>
+    <%= paginate @reviews %>
   </div>
 
 <% if user_signed_in? %>
