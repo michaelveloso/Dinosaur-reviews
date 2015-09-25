@@ -32,4 +32,11 @@ feature 'sees index page', %{
     expect(current_path).to eq(dinosaur_path(dino))
   end
 
+  scenario 'user sees up to five dinosaurs per page' do
+    dinosaurs = FactoryGirl.create_list(:dinosaur, 6)
+
+    visit root_path
+
+    expect(page).to_not have_content(dinosaurs[-1].name)
+  end
 end
