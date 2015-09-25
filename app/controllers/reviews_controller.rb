@@ -15,6 +15,7 @@ class ReviewsController < ApplicationController
       redirect_to dinosaur_path(@dinosaur)
     else
       flash[:errors] = @new_review.errors.full_messages.join(". ")
+      @reviews = @dinosaur.reviews.order(created_at: :desc).page params[:page]
       @new_review = Review.new
       @comment = Comment.new
       render 'dinosaurs/show'

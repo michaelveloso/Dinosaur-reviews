@@ -12,7 +12,7 @@
 
 <h4>Reviews for <%= @dinosaur.name %></h4>
   <div class="reviews row">
-    <% @dinosaur.reviews.reverse.each do |r| %>
+    <% @reviews.each do |r| %>
       <% @review = r %>
       <div class="row">
         <div class="review-block large-9 columns">
@@ -59,6 +59,7 @@
         </div>
       </div>
     <% end %>
+    <%= paginate @reviews %>
   </div>
 
 <% if user_signed_in? %>

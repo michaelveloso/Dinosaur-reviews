@@ -62,5 +62,13 @@ feature 'user adds new review', %{
       click_button("Submit")
       expect(page).to have_content("can't be blank")
     end
+
+    scenario 'user sees up to three reviews per page' do
+      dino = FactoryGirl.create(:dinosaur)
+      reviews = FactoryGirl.create_list(:review, 4, dinosaur: dino)
+
+      visit dinosaur_path(dino)
+      expect(page).to_not have_content(reviews[0].body)
+    end
   end
 end

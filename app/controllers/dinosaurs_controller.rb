@@ -2,13 +2,13 @@ class DinosaursController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @dinosaurs = Dinosaur.all
+    @dinosaurs = Dinosaur.order(:name).page params[:page]
   end
 
   def show
     @dinosaur = Dinosaur.find(params[:id])
     @new_review = Review.new
-    @reviews = @dinosaur.reviews
+    @reviews = @dinosaur.reviews.order(created_at: :desc).page params[:page]
     @comment = Comment.new
     @review = Review.new
     @comments = @review.comments
