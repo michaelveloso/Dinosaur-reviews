@@ -8,7 +8,7 @@ class DinosaursController < ApplicationController
   def show
     @dinosaur = Dinosaur.find(params[:id])
     @new_review = Review.new
-    @reviews = @dinosaur.reviews.order(:created_at).page params[:page]
+    @reviews = @dinosaur.reviews.order(created_at: :desc).page params[:page]
     @comment = Comment.new
     @review = Review.new
     @comments = @review.comments
