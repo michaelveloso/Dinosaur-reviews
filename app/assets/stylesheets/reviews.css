@@ -15,22 +15,25 @@
  *= require_self
 
  */
-#page-wrap {
-  margin: 0 auto;
-}
-.row {
-  margin: 30px;
-}
-.dinosaur-link {
-  background-color: #999;
-  margin: 10px;
-}
-div a {
-  text-decoration: none;
-  color: white;
-}
-.dinosaur-desc {
-  margin-left: 10px;
+
+.review-info {
+  margin-left: 20px;
   font-size: 10pt;
-  color: #ddd;
+}
+.review-body {
+  margin-left: 5px;
+  font-size: 15pt;
+}
+.review-block {
+  margin: 10px;
+  padding-bottom: 10px;
+  background-color: #999;
+  box-shadow: 8px 8px 8px #777;
+}
+.review-box {
+  background-color: #888;
+  color: white;
+  padding: 5px;
+  font-size: 10pt;
+  box-shadow: 8px 8px 8px #777;
 }

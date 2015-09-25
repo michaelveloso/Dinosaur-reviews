@@ -1,0 +1,60 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require foundation_and_overrides
+ *= require_self
+
+ */
+.tiny {
+  padding: 0px;
+}
+/* this covers the Submit Review, Edit Dinosaur, and Extinctify Dinosaur buttons*/
+@mixin buttonstyles($bg-color: #bbb) {
+  background-color: $bg-color;
+  padding: 5px
+}
+@mixin buttonhovers($hover-color) {
+  background-color: $hover-color;
+  padding: 5px;
+  box-shadow: 8px 8px 8px #777;
+}
+input.show-crud-buttons {
+  @include buttonstyles;
+  &:hover{
+    @include buttonhovers(green);
+  }
+}
+input.review-crud-buttons {
+  @include buttonstyles;
+  &:hover{
+    @include buttonhovers(yellow);
+  }
+}
+input.dino-crud-buttons {
+  @include buttonstyles;
+  &:hover{
+    @include buttonhovers(green);
+  }
+}
+input.submit-comment-crud-buttons.tiny {
+  @include buttonstyles(#999);
+  &:hover{
+    @include buttonhovers(purple);
+  }
+}
+input.update-comment-crud-buttons.tiny {
+  @include buttonstyles(#888);
+  &:hover{
+    @include buttonhovers(purple);
+  }
+}

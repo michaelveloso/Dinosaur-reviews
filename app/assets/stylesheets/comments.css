@@ -15,22 +15,24 @@
  *= require_self
 
  */
-#page-wrap {
-  margin: 0 auto;
-}
-.row {
-  margin: 30px;
-}
-.dinosaur-link {
-  background-color: #999;
-  margin: 10px;
-}
-div a {
-  text-decoration: none;
+.comments {
+  background-color: #888;
   color: white;
-}
-.dinosaur-desc {
-  margin-left: 10px;
+  padding: 5px;
   font-size: 10pt;
-  color: #ddd;
+  box-shadow: 8px 8px 8px #777;
+}
+.comment-field {
+  margin: 20px 0px 0px 0px;
+}
+.comment-user {
+  font-size: 8pt;
+}
+.comment-header {
+  font-size: 10pt;
+  font-weight: bold;
+  color: #fff;
+}
+.comment-body {
+  margin-left: 15px;
 }
