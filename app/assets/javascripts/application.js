@@ -42,7 +42,8 @@ var upvotes = function(button) { // Function accepts the form input
     dataType: "json" // data uses params objects from server.rb file
   })
   .done(function(data){
-    button.innerHTML = "Upvote " + data
+    $('#total-votes p')[0].innerHTML = parseInt($('#total-votes p')[0].innerHTML) + 1
+    // button.innerHTML = "Upvote " + data
   });
 };
 

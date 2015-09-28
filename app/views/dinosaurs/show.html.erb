@@ -20,16 +20,15 @@ User reviews:
         <div class="review-block large-8 columns">
           <span class="review-info"><%= r.user.email %> rates <%= @dinosaur.name %> a <%= r.rating %></span><br>
           <span class="review-body"><%= r.body %></span>
+            Total votes: <div id="total-votes"><p><%= r.get_upvotes.size - r.get_downvotes.size %></p></div>
           <%= button_to like_dinosaur_review_path(dinosaur_id: r.dinosaur_id, id: r.id), class: "tiny button round upvote-button", method: :put do %>
             Upvote
-            <%= r.get_upvotes.size %>
           <% end %>
           <%= button_to unvote_dinosaur_review_path(dinosaur_id: r.dinosaur_id, id: r.id), class: "tiny button round unvote-button", method: :put do %>
             Unvote
           <% end %>
           <%= button_to dislike_dinosaur_review_path(dinosaur_id: r.dinosaur_id, id: r.id), class: "tiny button round downvote-button", method: :put do %>
             Downvote
-            <%= r.get_downvotes.size %>
           <% end %>
           <div class="comments">
             <span class="comment-header">Comments:</span>
