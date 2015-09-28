@@ -30,7 +30,6 @@ feature 'user can delete an existing dinosaur', %{
       expect(page).to_not have_content("Exctinctify this dinosaur!")
     end
   end
-  
   feature "User can delete own dinosaurs" do
 
     before(:each) do

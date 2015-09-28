@@ -66,7 +66,7 @@ feature 'user can update a dinosaur', %{
 
     scenario 'form should be displayed correctly' do
       dinosaur = Dinosaur.last
-    visit edit_dinosaur_path(dinosaur)
+      visit edit_dinosaur_path(dinosaur)
 
       find_field("Name")
       find_field("Location found")
@@ -76,7 +76,7 @@ feature 'user can update a dinosaur', %{
 
     scenario 'form is pre-filled with current values' do
       dinosaur = Dinosaur.last
-    visit edit_dinosaur_path(dinosaur)
+      visit edit_dinosaur_path(dinosaur)
 
       find_field('Name').value.should eq(dinosaur.name)
       find_field('Location found').value.should eq(dinosaur.location_found)
@@ -86,7 +86,7 @@ feature 'user can update a dinosaur', %{
 
     scenario 'edit page has link to show page' do
       dinosaur = Dinosaur.last
-    visit edit_dinosaur_path(dinosaur)
+      visit edit_dinosaur_path(dinosaur)
 
       click_button "Back to #{dinosaur.name}!"
 
@@ -95,7 +95,7 @@ feature 'user can update a dinosaur', %{
 
     scenario 'edit page has link to index' do
       dinosaur = Dinosaur.last
-    visit edit_dinosaur_path(dinosaur)
+      visit edit_dinosaur_path(dinosaur)
 
       click_button "Back to home"
 
