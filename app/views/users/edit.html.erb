@@ -1,0 +1,13 @@
+<h1>
+<%= @user.email %>
+</h1>
+
+<%= form_for @user do |f| %>
+  <div class="field column small-12">
+    <%= f.label :email, class: "text-input-label" %><br>
+    <%= f.text_field :email, class: "text-input-field", placeholder: @user.email %>
+  </div>
+  <div class="large-9 columns">
+    <%= f.submit 'Update', class: 'dino-crud-buttons button expand round medium' %>
+  </div>
+<% end %>
