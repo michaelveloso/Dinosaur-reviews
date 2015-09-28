@@ -44,24 +44,6 @@ class ReviewsController < ApplicationController
     redirect_to dinosaur_path(@review.dinosaur_id)
   end
 
-  def upvote
-    @review = Review.find(params[:id])
-    @review.upvote_by current_user
-    redirect_to :back
-  end
-
-  def downvote
-    @review = Review.find(params[:id])
-    @review.downvote_by current_user
-    redirect_to :back
-  end
-
-  def unvote
-    @review = Review.find(params[:id])
-    @review.unvote_by current_user
-    redirect_to :back
-  end
-
   private
 
   def review_params

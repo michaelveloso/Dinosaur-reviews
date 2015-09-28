@@ -16,21 +16,6 @@
       <% @review = r %>
       <div class="row">
         <div class="review-block large-9 columns">
-          <div class="votes">
-            <!-- these are the links for upvote downvote -->
-          <%= link_to like_dinosaur_review_path(dinosaur_id: r.dinosaur_id, id: r.id), method: :put do %>
-            Upvote
-            <%= r.get_upvotes.size %>
-          <% end %>
-          <%= link_to unvote_dinosaur_review_path(dinosaur_id: r.dinosaur_id, id: r.id), method: :put do %>
-            Unvote
-          <% end %>
-          <%= link_to dislike_dinosaur_review_path(dinosaur_id: r.dinosaur_id, id: r.id), method: :put do %>
-            Downvote
-            <%= r.get_downvotes.size %>
-          <% end %>
-          <!-- end of upvote downvote -->
-          </div>
           <div class="review-box">
             <div class="review-body"><%= r.body %><span class="review-info"> (<%= r.user.email %>)</span></div>
             <div class="review-info"><%= @dinosaur.name %> got rating of <%= r.rating %></div>
