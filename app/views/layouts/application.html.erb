@@ -12,28 +12,33 @@
 <body>
 
   <nav class="top-bar">
-    <ul class="title-area">
-      <li class="name">
-        <h1><a href="/">Dinosaurs</a></h1>
-
-      </li>
-    </ul>
 
     <section class="top-bar-section">
+      <ul class="title-area">
+        <li class="name">
+          <h1><%= link_to "Dinosaurs", root_path %></h1>
+        </li>
+      </ul>
         <%- if current_user -%>
           <span id="user-show"><%= link_to current_user.email, user_path(current_user) %></span>
           <% if current_user.admin? %>
             <span id="admin-keyword">Admin</span>
           <% end %>
-        <ul class="right">
-          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-        </ul>
-        <%- else -%>
+      <ul class="right">
+        <li>
+          <%= form_tag(dinosaurs_path, :method => "get", class: "navbar-form", id: "search-form") do %>
+          <%= text_field_tag :search, params[:search], class: "span2", placeholder: "Search Dinosaurs" %>
+        </li>
+        <li><%= submit_tag "Search", name: nil, class: "button" %> </li>
+          <%- end -%>
+        <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+      </ul>
+      <%- else -%>
         <ul class="right">
           <li><%= link_to 'Sign Up', new_user_registration_path %></li>
           <li><%= link_to 'Sign In', new_user_session_path %></li>
         </ul>
-        <%- end -%>
+      <%- end -%>
       </ul>
     </section>
   </nav>
