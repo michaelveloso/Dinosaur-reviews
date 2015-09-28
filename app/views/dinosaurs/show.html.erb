@@ -52,11 +52,22 @@
           <% end %>
         </div>
         <!-- end comments block -->
-        <div class="large-1 columns end">
-          <!-- these are the buttons for each review -->
-          <%= button_to "Update", edit_review_path(r.id), class: 'review-crud-buttons button expand round tiny', method: :get %>
-          <%= button_to "Delete", r, method: :delete, class: 'review-crud-buttons button expand round tiny' %>
-        </div>
+        <!-- these are the buttons for each review for users of the review -->
+        <% if current_user == r.user %>
+          <div class="large-1 columns end">
+            <%= button_to "Update", edit_review_path(r.id), class: 'review-crud-buttons button expand round tiny', method: :get %>
+            <%= button_to "Delete", r, method: :delete, class: 'review-crud-buttons button expand round tiny' %>
+          </div>
+        <% end %>
+        <!-- this is the delete button when signed in as adim -->
+        <% if current_user.present? %>
+          <% if current_user.admin? && current_user != r.user %>
+            <div class="large-1 columns end">
+              <%= button_to "Delete", r, method: :delete, class: 'review-crud-buttons button expand round tiny' %>
+            </div>
+          <% end %>
+        <% end %>
+
       </div>
     <% end %>
     <%= paginate @reviews %>
