@@ -32,10 +32,19 @@ class DinosaursController < ApplicationController
 
   def edit
     @dinosaur = Dinosaur.find(params[:id])
+    if current_user != @dinosaur.user
+      flash[:errors] = "You can't edit this dinosaur!"
+      redirect_to @dinosaur
+    end
   end
 
   def update
     @dinosaur = Dinosaur.find(params[:id])
+
+    if current_user != @dinosaur.user
+      flash[:errors] = "You can't edit this dinosaur!"
+      redirect_to @dinosaur
+    end
 
     if @dinosaur.update(dinosaur_params)
       flash[:success] = 'Dinosaur changed!'
@@ -48,6 +57,12 @@ class DinosaursController < ApplicationController
 
   def destroy
     @dinosaur = Dinosaur.find(params[:id])
+
+    if (current_user != @dinosaur.user) && (!current_user.admin?)
+      flash[:errors] = "You can't delete this dinosaur!"
+      redirect_to @dinosaur
+    end
+
     if @dinosaur.destroy
       flash[:success] = 'Dinosaur extinctified!'
       redirect_to dinosaurs_path

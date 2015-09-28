@@ -18,8 +18,7 @@ feature 'user can update a dinosaur', %{
 
 } do
 
-  feature "User can update dinosaurs if signed in" do
-
+  context "User is not original creator" do
     before(:each) do
       user = FactoryGirl.create(:user)
       visit new_user_session_path
@@ -29,17 +28,44 @@ feature 'user can update a dinosaur', %{
       click_button 'Log in'
     end
 
-    scenario 'show page should have a link to edit page' do
+    scenario "User can't update dinosaur" do
       dinosaur = FactoryGirl.create(:dinosaur)
       visit dinosaur_path(dinosaur)
 
+      expect(page).to_not have_content("Change this Dinosaur!")
+    end
+
+    scenario "User can't manually visit edit page" do
+      dinosaur = FactoryGirl.create(:dinosaur)
+      visit edit_dinosaur_path(dinosaur)
+
+      expect(current_path).to_not eq(edit_dinosaur_path(dinosaur))
+      expect(current_path).to eq(dinosaur_path(dinosaur))
+      expect(page).to have_content("You can't edit this dinosaur!")
+    end
+  end
+
+  feature "User can update dinosaurs if signed in and orginally created it" do
+
+    before(:each) do
+      user = FactoryGirl.create(:user)
+      visit new_user_session_path
+
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: user.password
+      click_button 'Log in'
+
+      @dinosaur = FactoryGirl.create(:dinosaur, user: user)
+      visit dinosaur_path(@dinosaur)
+    end
+
+    scenario 'show page should have a link to edit page' do
       click_button 'Edit this dinosaur!'
       expect(page).to have_content("Change this Dinosaur!")
     end
 
     scenario 'form should be displayed correctly' do
-      dinosaur = FactoryGirl.create(:dinosaur)
-      visit edit_dinosaur_path(dinosaur)
+      visit edit_dinosaur_path(@dinosaur)
 
       find_field("Name")
       find_field("Location found")
@@ -48,27 +74,24 @@ feature 'user can update a dinosaur', %{
     end
 
     scenario 'form is pre-filled with current values' do
-      dinosaur = FactoryGirl.create(:dinosaur)
-      visit edit_dinosaur_path(dinosaur)
+      visit edit_dinosaur_path(@dinosaur)
 
-      find_field('Name').value.should eq(dinosaur.name)
-      find_field('Location found').value.should eq(dinosaur.location_found)
-      find_field('Info url').value.should eq(dinosaur.info_url)
-      find_field('Description').value.should eq(dinosaur.description)
+      find_field('Name').value.should eq(@dinosaur.name)
+      find_field('Location found').value.should eq(@dinosaur.location_found)
+      find_field('Info url').value.should eq(@dinosaur.info_url)
+      find_field('Description').value.should eq(@dinosaur.description)
     end
 
     scenario 'edit page has link to show page' do
-      dinosaur = FactoryGirl.create(:dinosaur)
-      visit edit_dinosaur_path(dinosaur)
+      visit edit_dinosaur_path(@dinosaur)
 
-      click_button "Back to #{dinosaur.name}!"
+      click_button "Back to #{@dinosaur.name}!"
 
-      expect(current_path).to eq(dinosaur_path(dinosaur))
+      expect(current_path).to eq(dinosaur_path(@dinosaur))
     end
 
     scenario 'edit page has link to index' do
-      dinosaur = FactoryGirl.create(:dinosaur)
-      visit edit_dinosaur_path(dinosaur)
+      visit edit_dinosaur_path(@dinosaur)
 
       click_button "Back to home"
 
@@ -78,8 +101,7 @@ feature 'user can update a dinosaur', %{
     feature 'user enters information correctly' do
 
       scenario 'user gets confirmation of update' do
-        dinosaur = FactoryGirl.create(:dinosaur)
-        visit edit_dinosaur_path(dinosaur)
+        visit edit_dinosaur_path(@dinosaur)
 
         fill_in "Name", with: "New Name"
         fill_in "Location found", with: "Idaho"
@@ -92,8 +114,7 @@ feature 'user can update a dinosaur', %{
       end
 
       scenario 'user is taken to show page' do
-        dinosaur = FactoryGirl.create(:dinosaur)
-        visit edit_dinosaur_path(dinosaur)
+        visit edit_dinosaur_path(@dinosaur)
 
         fill_in "Name", with: "New Name"
         fill_in "Location found", with: "Idaho"
@@ -101,7 +122,7 @@ feature 'user can update a dinosaur', %{
         fill_in "Description", with: "new description"
         click_button "Change this dinosaur!"
 
-        expect(current_path).to eq(dinosaur_path(dinosaur))
+        expect(current_path).to eq(dinosaur_path(@dinosaur))
         expect(page).to have_content("New Name")
         expect(page).to have_content("Idaho")
         expect(page).to have_content("new description")
@@ -112,8 +133,7 @@ feature 'user can update a dinosaur', %{
     feature 'user enters information incorrectly' do
 
       scenario 'user gets errors' do
-        dinosaur = FactoryGirl.create(:dinosaur)
-        visit edit_dinosaur_path(dinosaur)
+        visit edit_dinosaur_path(@dinosaur)
 
         fill_in "Name", with: ""
         fill_in "Location found", with: ""
@@ -128,8 +148,7 @@ feature 'user can update a dinosaur', %{
       end
 
       scenario 'user stays on page' do
-        dinosaur = FactoryGirl.create(:dinosaur)
-        visit edit_dinosaur_path(dinosaur)
+        visit edit_dinosaur_path(@dinosaur)
 
         fill_in "Name", with: ""
         fill_in "Location found", with: ""
