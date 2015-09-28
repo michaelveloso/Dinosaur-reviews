@@ -18,7 +18,20 @@ feature 'user can update a dinosaur', %{
 
 } do
 
-  feature "User can update dinosaurs if signed in" do
+  scenario "User can't update dinosaur if not original creator" do
+    user = FactoryGirl.create(:user)
+    visit new_user_session_path
+
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Log in'
+
+    dinosaur = FactoryGirl.create(:dinosaur)
+    visit dinosaur_path(dinosaur)
+    expect(page).to_not have_content("Change this Dinosaur!")
+  end
+
+  feature "User can update dinosaurs if signed in and orginally created it" do
 
     before(:each) do
       user = FactoryGirl.create(:user)
@@ -27,19 +40,19 @@ feature 'user can update a dinosaur', %{
       fill_in 'Email', with: user.email
       fill_in 'Password', with: user.password
       click_button 'Log in'
+
+      dinosaur = FactoryGirl.create(:dinosaur, user: user)
+      visit dinosaur_path(dinosaur)
     end
 
     scenario 'show page should have a link to edit page' do
-      dinosaur = FactoryGirl.create(:dinosaur)
-      visit dinosaur_path(dinosaur)
-
       click_button 'Edit this dinosaur!'
       expect(page).to have_content("Change this Dinosaur!")
     end
 
     scenario 'form should be displayed correctly' do
-      dinosaur = FactoryGirl.create(:dinosaur)
-      visit edit_dinosaur_path(dinosaur)
+      dinosaur = Dinosaur.last
+    visit edit_dinosaur_path(dinosaur)
 
       find_field("Name")
       find_field("Location found")
@@ -48,8 +61,8 @@ feature 'user can update a dinosaur', %{
     end
 
     scenario 'form is pre-filled with current values' do
-      dinosaur = FactoryGirl.create(:dinosaur)
-      visit edit_dinosaur_path(dinosaur)
+      dinosaur = Dinosaur.last
+    visit edit_dinosaur_path(dinosaur)
 
       find_field('Name').value.should eq(dinosaur.name)
       find_field('Location found').value.should eq(dinosaur.location_found)
@@ -58,8 +71,8 @@ feature 'user can update a dinosaur', %{
     end
 
     scenario 'edit page has link to show page' do
-      dinosaur = FactoryGirl.create(:dinosaur)
-      visit edit_dinosaur_path(dinosaur)
+      dinosaur = Dinosaur.last
+    visit edit_dinosaur_path(dinosaur)
 
       click_button "Back to #{dinosaur.name}!"
 
@@ -67,8 +80,8 @@ feature 'user can update a dinosaur', %{
     end
 
     scenario 'edit page has link to index' do
-      dinosaur = FactoryGirl.create(:dinosaur)
-      visit edit_dinosaur_path(dinosaur)
+      dinosaur = Dinosaur.last
+    visit edit_dinosaur_path(dinosaur)
 
       click_button "Back to home"
 
@@ -78,7 +91,7 @@ feature 'user can update a dinosaur', %{
     feature 'user enters information correctly' do
 
       scenario 'user gets confirmation of update' do
-        dinosaur = FactoryGirl.create(:dinosaur)
+        dinosaur = Dinosaur.last
         visit edit_dinosaur_path(dinosaur)
 
         fill_in "Name", with: "New Name"
@@ -92,7 +105,7 @@ feature 'user can update a dinosaur', %{
       end
 
       scenario 'user is taken to show page' do
-        dinosaur = FactoryGirl.create(:dinosaur)
+        dinosaur = Dinosaur.last
         visit edit_dinosaur_path(dinosaur)
 
         fill_in "Name", with: "New Name"
@@ -112,7 +125,7 @@ feature 'user can update a dinosaur', %{
     feature 'user enters information incorrectly' do
 
       scenario 'user gets errors' do
-        dinosaur = FactoryGirl.create(:dinosaur)
+        dinosaur = Dinosaur.last
         visit edit_dinosaur_path(dinosaur)
 
         fill_in "Name", with: ""
@@ -128,7 +141,7 @@ feature 'user can update a dinosaur', %{
       end
 
       scenario 'user stays on page' do
-        dinosaur = FactoryGirl.create(:dinosaur)
+        dinosaur = Dinosaur.last
         visit edit_dinosaur_path(dinosaur)
 
         fill_in "Name", with: ""

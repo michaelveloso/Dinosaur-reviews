@@ -32,6 +32,10 @@ class DinosaursController < ApplicationController
 
   def edit
     @dinosaur = Dinosaur.find(params[:id])
+    if current_user != @dinosaur.user
+      flash[:errors] = "You can't edit this dinosaur!"
+      redirect_to @dinosaur
+    end
   end
 
   def update

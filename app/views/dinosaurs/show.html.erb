@@ -56,7 +56,7 @@ User reviews:
     <%= paginate @reviews %>
   </div>
 
-<% if user_signed_in? %>
+<% if user_signed_in?  %>
   <div class="row">
     <%= form_for [@dinosaur, @new_review], {action: dinosaur_reviews_path(@dinosaur)} do |f| %>
       <div class="large-1 columns">
@@ -73,12 +73,18 @@ User reviews:
         <%= f.submit 'Submit', class: 'crud-buttons button expand round medium' %>
       </div>
     <% end %>
-    <div class="large-9 columns">
-      <%= button_to "Edit this dinosaur!", edit_dinosaur_path(@dinosaur), class: 'crud-buttons button expand round medium', method: :get%>
-      <%= button_to "Exctinctify this dinosaur!", @dinosaur, class: 'crud-buttons button expand round medium', method: :delete %>
-    </div>
+
+    <% if current_user == @dinosaur.user %>
+      <div class="large-9 columns">
+        <%= button_to "Edit this dinosaur!", edit_dinosaur_path(@dinosaur), class: 'crud-buttons button expand round medium', method: :get%>
+        <%= button_to "Exctinctify this dinosaur!", @dinosaur, class: 'crud-buttons button expand round medium', method: :delete %>
+      </div>
+    <% end %>
+
+    <% if current_user.admin? && current_user != @dinosaur.user %>
+      <div class="large-9 columns">
+        <%= button_to "Exctinctify this dinosaur!", @dinosaur, class: 'crud-buttons button expand round medium', method: :delete %>
+      </div>
+    <% end %>
   </div>
-<% else %>
-  <%= link_to "Sign in", new_user_session_path %><br />
-  <%= link_to "Sign up", new_user_session_path %><br />
 <% end %>
