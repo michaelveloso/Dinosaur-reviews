@@ -1,10 +1,14 @@
 <h1>Users!</h1>
 <% @users.each do |user| %>
-  <div>
-    <%= user.email %>
-    <% if user.admin? %>
-      <b>admin</b>
-    <% end %>
-    <%= button_to "Exctinctify #{user.email}!", admin_user_path(user), class: "crud-buttons button expand round medium user#{user.id}", method: :delete %>
+  <div class="row">
+    <div class="column small-4">
+      <%= user.email %>
+      <% if user.admin? %>
+        <b>admin</b>
+      <% end %>
+    </div>
+    <div class="column small-4 end">
+      <%= button_to "Exctinctify #{user.email}", admin_user_path(user), class: "dino-crud-buttons button round medium user#{user.id}", method: :delete %>
+    </div>
   </div>
 <% end %>

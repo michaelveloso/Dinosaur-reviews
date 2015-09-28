@@ -96,14 +96,14 @@
 
     <% if current_user == @dinosaur.user %>
       <div class="large-9 columns">
-        <%= button_to "Edit this dinosaur!", edit_dinosaur_path(@dinosaur), class: 'crud-buttons button expand round medium', method: :get%>
-        <%= button_to "Exctinctify this dinosaur!", @dinosaur, class: 'crud-buttons button expand round medium', method: :delete %>
+        <%= button_to "Edit this dinosaur!", edit_dinosaur_path(@dinosaur), class: 'dino-crud-buttons button expand round medium', method: :get%>
+        <%= button_to "Exctinctify this dinosaur!", @dinosaur, class: 'dino-crud-buttons button expand round medium', method: :delete %>
       </div>
     <% end %>
 
     <% if current_user.admin? && current_user != @dinosaur.user %>
       <div class="large-9 columns">
-        <%= button_to "Exctinctify this dinosaur!", @dinosaur, class: 'crud-buttons button expand round medium', method: :delete %>
+        <%= button_to "Exctinctify this dinosaur!", @dinosaur, class: 'dino-crud-buttons button expand round medium', method: :delete %>
       </div>
     <% end %>
 
