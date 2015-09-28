@@ -20,15 +20,19 @@
     </ul>
 
     <section class="top-bar-section">
-      <ul class="right">
         <%- if current_user -%>
+          <span id="user-show"><%= current_user.email %></span>
           <% if current_user.admin? %>
-            Admin
+            <span id="admin-keyword">Admin</span>
           <% end %>
+        <ul class="right">
           <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+        </ul>
         <%- else -%>
+        <ul class="right">
           <li><%= link_to 'Sign Up', new_user_registration_path %></li>
           <li><%= link_to 'Sign In', new_user_session_path %></li>
+        </ul>
         <%- end -%>
       </ul>
     </section>
