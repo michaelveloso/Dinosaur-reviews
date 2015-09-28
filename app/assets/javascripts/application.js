@@ -22,13 +22,13 @@ $(document).ready(function(){
   $('.upvote-button').on('click', function(event){
     event.preventDefault()
     var button = $(this);
-    upvotes(button);
+    votes(button, 1)
   });
 
   $('.downvote-button').on('click', function(event){
     event.preventDefault()
     var button = $(this);
-    downvotes(button);
+    votes(button, -1)
   });
 
 
@@ -42,25 +42,12 @@ $(document).ready(function(){
 
 });
 
-var upvotes = function(button) { // Function accepts the form input
+var votes = function(button, val) { // Function accepts the form input
   $.ajax({ // variable set to AJAX function
     method: "POST", // Method for POSTing input data
     url: button.parent().attr("action"), // URL matches POST in server.rb
     dataType: "json", // data uses params objects from server.rb file
-    data: {value: 1}
-  })
-  .success(function(data){
-    score = $(button.parent().parent().children('.score'))
-    score.text(data)
-  });
-};
-
-var downvotes = function(button) { // Function accepts the form input
-  $.ajax({ // variable set to AJAX function
-    method: "POST", // Method for POSTing input data
-    url: button.parent().attr("action"), // URL matches POST in server.rb
-    dataType: "json", // data uses params objects from server.rb file
-    data: {value: -1}
+    data: {value: val}
   })
   .success(function(data){
     score = $(button.parent().parent().children('.score'))
