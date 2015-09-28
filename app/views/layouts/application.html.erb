@@ -21,7 +21,7 @@
 
     <section class="top-bar-section">
         <%- if current_user -%>
-          <span id="user-show"><%= current_user.email %></span>
+          <span id="user-show"><%= link_to current_user.email, user_path(current_user) %></span>
           <% if current_user.admin? %>
             <span id="admin-keyword">Admin</span>
           <% end %>
