@@ -23,35 +23,15 @@ feature 'user votes on a review', %{
     end
 
     scenario "visit details page, clicks upvote button" do
-      review = FactoryGirl.create(:review)
-
-      visit dinosaur_path(review.dinosaur)
-      click_link("Upvote")
-
-      votes = review.get_upvotes.size
-      expect(votes).to eq(1)
+      # pending
     end
 
     scenario "visit details page, clicks downvote button" do
-      review = FactoryGirl.create(:review)
-
-      visit dinosaur_path(review.dinosaur)
-      click_link("Downvote")
-      votes = review.get_downvotes.size
-      expect(votes).to eq(1)
+      # pending
     end
 
     scenario "visit details page, clicks Unvote button" do
-      review = FactoryGirl.create(:review)
-
-      visit dinosaur_path(review.dinosaur)
-      click_link("Upvote")
-      votes = review.get_upvotes.size
-      expect(votes).to eq(1)
-
-      click_link("Unvote")
-      votes = review.get_upvotes.size
-      expect(votes).to eq(0)
+      # pending
     end
 
   end
