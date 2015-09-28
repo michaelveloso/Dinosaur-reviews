@@ -1,0 +1,45 @@
+.tiny {
+  padding: 0px;
+}
+
+@mixin buttonstyles($bg-color: #bbb) {
+  background-color: $bg-color;
+  padding: 5px
+}
+
+@mixin buttonhovers($hover-color) {
+  background-color: $hover-color;
+  padding: 5px;
+  box-shadow: 8px 8px 8px #777;
+}
+
+input.show-crud-buttons {
+  @include buttonstyles;
+  &:hover{
+    @include buttonhovers(green);
+  }
+}
+input.review-crud-buttons {
+  @include buttonstyles;
+  &:hover{
+    @include buttonhovers(yellow);
+  }
+}
+input.dino-crud-buttons {
+  @include buttonstyles;
+  &:hover{
+    @include buttonhovers(green);
+  }
+}
+input.submit-comment-crud-buttons.tiny {
+  @include buttonstyles(#999);
+  &:hover{
+    @include buttonhovers(purple);
+  }
+}
+input.update-comment-crud-buttons.tiny {
+  @include buttonstyles(#888);
+  &:hover{
+    @include buttonhovers(purple);
+  }
+}

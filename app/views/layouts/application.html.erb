@@ -3,6 +3,9 @@
 <head>
   <title>Dinosaurs</title>
   <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= stylesheet_link_tag 'buttons', media: 'all' %>
+  <%= stylesheet_link_tag 'comments', media: 'all' %>
+  <%= stylesheet_link_tag 'reviews', media: 'all' %>
   <%= csrf_meta_tags %>
   <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
 </head>
@@ -37,7 +40,7 @@
     </div>
   <%- end -%>
 
-  <div class="row"> <%= yield %> </div>
+  <div class="row", id="page-wrap"> <%= yield %> </div>
 
   <%= javascript_include_tag 'application' %>
   <%= yield :extra_footer %>

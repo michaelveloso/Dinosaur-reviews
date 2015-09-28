@@ -1,9 +1,9 @@
 
 <%= form_for [@review, @comment] do |form| %>
-  <div class="field column small-12">
-    <%= form.label :body, "Comment", class: "text-input-label" %><br>
-    <%= form.text_field :body, class: "text-input-field comment-input-field", placeholder: 'Add your comment!' %>
-    <%= form.submit "Save comment", class: 'button-comment button expand round tiny'%>
+  <div class="comment-field column small-12">
+    <%= form.label :body, "Comment" %>
+    <%= form.text_field :body, class: "text-input-field comment-input-field", placeholder: 'Add a new comment!' %>
+    <%= form.submit "Save comment", class: 'submit-comment-crud-buttons button round tiny'%>
   </div>
 
 <% end %>
