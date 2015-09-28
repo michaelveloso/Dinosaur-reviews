@@ -18,17 +18,31 @@ feature 'user can update a dinosaur', %{
 
 } do
 
-  scenario "User can't update dinosaur if not original creator" do
-    user = FactoryGirl.create(:user)
-    visit new_user_session_path
+  context "User is not original creator" do
+    before(:each) do
+      user = FactoryGirl.create(:user)
+      visit new_user_session_path
 
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_button 'Log in'
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: user.password
+      click_button 'Log in'
+    end
 
-    dinosaur = FactoryGirl.create(:dinosaur)
-    visit dinosaur_path(dinosaur)
-    expect(page).to_not have_content("Change this Dinosaur!")
+    scenario "User can't update dinosaur" do
+      dinosaur = FactoryGirl.create(:dinosaur)
+      visit dinosaur_path(dinosaur)
+
+      expect(page).to_not have_content("Change this Dinosaur!")
+    end
+
+    scenario "User can't manually visit edit page" do
+      dinosaur = FactoryGirl.create(:dinosaur)
+      visit edit_dinosaur_path(dinosaur)
+
+      expect(current_path).to_not eq(edit_dinosaur_path(dinosaur))
+      expect(current_path).to eq(dinosaur_path(dinosaur))
+      expect(page).to have_content("You can't edit this dinosaur!")
+    end
   end
 
   feature "User can update dinosaurs if signed in and orginally created it" do

@@ -19,10 +19,10 @@
   </div>
   <br>
   <div class="actions">
-    <%= form.submit "Change this dinosaur!", class: "crud-buttons button expand round medium" %>
+    <%= form.submit "Change this dinosaur!", class: "dino-crud-buttons button expand round medium" %>
   </div>
 <% end %>
 
 
-<%= button_to "Back to #{@dinosaur.name}!", dinosaur_path(@dinosaur), class: 'crud-buttons button expand round medium', method: :get %>
-<%= button_to "Back to home", dinosaurs_path, class: 'crud-buttons button expand round medium', method: :get %>
+<%= button_to "Back to #{@dinosaur.name}!", dinosaur_path(@dinosaur), class: 'dino-crud-buttons button expand round medium', method: :get %>
+<%= button_to "Back to home", dinosaurs_path, class: 'dino-crud-buttons button expand round medium', method: :get %>

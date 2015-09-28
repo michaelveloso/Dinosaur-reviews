@@ -10,16 +10,14 @@
   </div>
 </div>
 
-<h3>
-User reviews:
-</h3>
+<h4>Reviews for <%= @dinosaur.name %></h4>
   <div class="reviews row">
     <% @reviews.each do |r| %>
       <% @review = r %>
       <div class="row">
-        <div class="review-block large-8 columns">
-          <span class="review-info"><%= r.user.email %> rates <%= @dinosaur.name %> a <%= r.rating %></span><br>
-          <span class="review-body"><%= r.body %></span>
+        <div class="review-block large-9 columns">
+          <div class="votes">
+            <!-- these are the links for upvote downvote -->
           <%= link_to like_dinosaur_review_path(dinosaur_id: r.dinosaur_id, id: r.id), method: :put do %>
             Upvote
             <%= r.get_upvotes.size %>
@@ -31,25 +29,33 @@ User reviews:
             Downvote
             <%= r.get_downvotes.size %>
           <% end %>
+          <!-- end of upvote downvote -->
+          </div>
+          <div class="review-box">
+            <div class="review-body"><%= r.body %><span class="review-info"> (<%= r.user.email %>)</span></div>
+            <div class="review-info"><%= @dinosaur.name %> got rating of <%= r.rating %></div>
+          </div>
+          <!--  this is for the comments block -->
           <div class="comments">
             <span class="comment-header">Comments:</span>
             <br>
             <% r.comments.each do |comment| %>
               <span class="comment-body"><%= comment.body %> </span>
               <span class="comment-user">(<%= comment.user.email %>) </span>
-              <%= button_to "Update comment", edit_review_comment_path(review_id: @review.id, id: comment.id), method: :get %>
+              <%= button_to "Update comment", edit_review_comment_path(review_id: @review.id, id: comment.id),
+                method: :get, class: 'update-comment-crud-buttons button round tiny' %>
               <br>
             <% end %>
           </div>
-
           <% if user_signed_in? %>
             <%= render 'layouts/comments' %>
           <% end %>
         </div>
-
+        <!-- end comments block -->
         <div class="large-1 columns end">
-          <%= button_to "Update", edit_review_path(r.id), class: 'crud-buttons button expand round tiny', method: :get %>
-          <%= button_to "Delete", r, method: :delete, class: 'crud-buttons button expand round tiny' %>
+          <!-- these are the buttons for each review -->
+          <%= button_to "Update", edit_review_path(r.id), class: 'review-crud-buttons button expand round tiny', method: :get %>
+          <%= button_to "Delete", r, method: :delete, class: 'review-crud-buttons button expand round tiny' %>
         </div>
       </div>
     <% end %>
@@ -58,19 +64,20 @@ User reviews:
 
 <% if user_signed_in?  %>
   <div class="row">
+    <h4>What do you think of <%= @dinosaur.name %>? </h4>
     <%= form_for [@dinosaur, @new_review], {action: dinosaur_reviews_path(@dinosaur)} do |f| %>
       <div class="large-1 columns">
         <%= f.label :rating %>
         <%= f.select :rating, [[1,1],[2,2],[3,3],[4,4],[5,5]], class: 'border-radius', method: :post %>
       </div>
       <div class="large-8 columns">
-        <%= f.label :body %>
+        <%= f.label :body, "New Review" %>
         <%= f.text_field :body, placeholder: "Write a new review for #{@dinosaur.name}" %>
 
       </div>
       <br>
       <div class="large-9 columns">
-        <%= f.submit 'Submit', class: 'crud-buttons button expand round medium' %>
+        <%= f.submit 'Submit a Review', class: 'show-crud-buttons button expand round medium' %>
       </div>
     <% end %>
 
@@ -86,5 +93,6 @@ User reviews:
         <%= button_to "Exctinctify this dinosaur!", @dinosaur, class: 'crud-buttons button expand round medium', method: :delete %>
       </div>
     <% end %>
+
   </div>
 <% end %>
