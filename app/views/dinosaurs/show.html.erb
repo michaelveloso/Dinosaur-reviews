@@ -60,10 +60,12 @@
           </div>
         <% end %>
         <!-- this is the delete button when signed in as adim -->
-        <% if current_user.admin? && current_user != r.user %>
-          <div class="large-1 columns end">
-            <%= button_to "Delete", r, method: :delete, class: 'review-crud-buttons button expand round tiny' %>
-          </div>
+        <% if current_user.present? %>
+          <% if current_user.admin? && current_user != r.user %>
+            <div class="large-1 columns end">
+              <%= button_to "Delete", r, method: :delete, class: 'review-crud-buttons button expand round tiny' %>
+            </div>
+          <% end %>
         <% end %>
 
       </div>
