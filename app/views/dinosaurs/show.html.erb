@@ -24,10 +24,10 @@ User reviews:
             Upvote
             <%= r.get_upvotes.size %>
           <% end %>
-          <%= button_to unvote_dinosaur_review_path(dinosaur_id: r.dinosaur_id, id: r.id), method: :put do %>
+          <%= button_to unvote_dinosaur_review_path(dinosaur_id: r.dinosaur_id, id: r.id), class: "tiny button round unvote-button", method: :put do %>
             Unvote
           <% end %>
-          <%= button_to dislike_dinosaur_review_path(dinosaur_id: r.dinosaur_id, id: r.id), method: :put do %>
+          <%= button_to dislike_dinosaur_review_path(dinosaur_id: r.dinosaur_id, id: r.id), class: "tiny button round downvote-button", method: :put do %>
             Downvote
             <%= r.get_downvotes.size %>
           <% end %>

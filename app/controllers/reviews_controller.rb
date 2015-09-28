@@ -49,8 +49,8 @@ class ReviewsController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        upvotes = @review.get_upvotes.size
-        render json: [upvotes]
+        @upvotes = @review.get_upvotes.size
+        render json: [@upvotes]
       end
     end
   end
@@ -58,13 +58,18 @@ class ReviewsController < ApplicationController
   def downvote
     @review = Review.find(params[:id])
     @review.downvote_by current_user
-    redirect_to :back
+    respond_to do |format|
+      format.html
+      format.json do
+        @downvotes = @review.get_downvotes.size
+        render json: [@downvotes]
+      end
+    end
   end
 
   def unvote
     @review = Review.find(params[:id])
     @review.unvote_by current_user
-    redirect_to :back
   end
 
   private

@@ -23,7 +23,13 @@ $(document).ready(function(){
     event.preventDefault();
     var button = this;
     upvotes(button);
-  })
+  });
+
+  $('.downvote-button').on('click', function(event){
+    event.preventDefault();
+    var button = this;
+    downvotes(button);
+  });
 
 });
 
@@ -37,5 +43,16 @@ var upvotes = function(button) { // Function accepts the form input
   })
   .done(function(data){
     button.innerHTML = "Upvote " + data
+  });
+};
+
+var downvotes = function(button) { // Function accepts the form input
+  $.ajax({ // variable set to AJAX function
+    method: "PUT", // Method for POSTing input data
+    url: $(button).parent().attr("action"), // URL matches POST in server.rb
+    dataType: "json" // data uses params objects from server.rb file
+  })
+  .done(function(data){
+    button.innerHTML = "Downvote " + data
   });
 };
