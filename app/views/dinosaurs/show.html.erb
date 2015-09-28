@@ -42,8 +42,10 @@
             <% r.comments.each do |comment| %>
               <span class="comment-body"><%= comment.body %> </span>
               <span class="comment-user">(<%= comment.user.email %>) </span>
-              <%= button_to "Update comment", edit_review_comment_path(review_id: @review.id, id: comment.id),
+              <% if current_user == comment.user %>
+                <%= button_to "Update comment", edit_review_comment_path(review_id: @review.id, id: comment.id),
                 method: :get, class: 'update-comment-crud-buttons button round tiny' %>
+              <% end %>
               <br>
             <% end %>
           </div>

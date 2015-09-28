@@ -15,11 +15,19 @@ class CommentsController < ApplicationController
   def edit
     @comment = Comment.find(params[:id])
     @review = Review.find(params[:review_id])
+    if current_user != @comment.user
+      flash[:errors] = "You can't edit this comment!"
+      redirect_to @comment.review.dinosaur
+    end
   end
 
   def update
     @comment = Comment.find(params[:id])
     @review = Review.find(params[:review_id])
+    if current_user != @comment.user
+      flash[:errors] = "You can't edit this comment!"
+      redirect_to @comment.review.dinosaur
+    end
     if @comment.update_attributes(comment_params)
       flash[:notice] = "Comment updated!"
       redirect_to dinosaur_path(@comment.review.dinosaur_id)
