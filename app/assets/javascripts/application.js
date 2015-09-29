@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require foundation
 //= require_tree .
-var votes
+var votes;
 $(function(){ $(document).foundation(); });
 
 $(document).ready(function(){
@@ -40,15 +40,15 @@ $(document).ready(function(){
 
 });
 
-votes = function(button, val) { // Function accepts the form input
-  $.ajax({ // variable set to AJAX function
-    method: 'POST', // Method for POSTing input data
-    url: button.parent().attr('action'), // URL matches POST in server.rb
-    dataType: 'json', // data uses params objects from server.rb file
+votes = function(button, val) {
+  $.ajax({
+    method: 'POST',
+    url: button.parent().attr('action'),
+    dataType: 'json',
     data: {value: val}
   })
   .success(function(data){
-    var score = $(button.parent().parent().children('.score'))
-    score.text(data)
+    var score = $(button.parent().parent().children('.score'));
+    score.text(data);
   });
 };
