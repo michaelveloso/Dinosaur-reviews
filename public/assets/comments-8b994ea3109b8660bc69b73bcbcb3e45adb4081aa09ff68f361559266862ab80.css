@@ -1,0 +1,21 @@
+.comments {
+  background-color: #888;
+  color: white;
+  padding: 5px;
+  font-size: 10pt;
+  box-shadow: 8px 8px 8px #777;
+}
+.comment-field {
+  margin: 20px 0px 0px 0px;
+}
+.comment-user {
+  font-size: 8pt;
+}
+.comment-header {
+  font-size: 10pt;
+  font-weight: bold;
+  color: #fff;
+}
+.comment-body {
+  margin-left: 15px;
+}
