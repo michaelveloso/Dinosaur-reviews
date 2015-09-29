@@ -39,6 +39,7 @@ input.submit-comment-crud-buttons.tiny {
 }
 input.update-comment-crud-buttons.tiny {
   @include buttonstyles(#888);
+
   &:hover{
     @include buttonhovers(purple);
   }
