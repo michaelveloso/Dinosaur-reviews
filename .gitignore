@@ -4,6 +4,5 @@
 /tmp
 /coverage
 /public/uploads/
-rm -rf public/uploads
 .env
 *.log
