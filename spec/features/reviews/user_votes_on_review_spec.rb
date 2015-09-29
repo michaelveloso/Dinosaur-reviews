@@ -59,7 +59,7 @@ feature 'user votes on a review', %{
 
       expect(page).to have_content('1')
     end
-    
+
     scenario "user can't downvote more than once", js: true do
       review = FactoryGirl.create(:review)
 

@@ -19,8 +19,6 @@ $(document).ready(function(){
     var button = $(this);
     votes(button, 0);
   });
-
-
 });
 
 votes = function(button, val) {

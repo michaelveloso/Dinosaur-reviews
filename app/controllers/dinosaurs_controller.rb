@@ -3,6 +3,12 @@ class DinosaursController < ApplicationController
 
   def index
     @dinosaurs = Dinosaur.order(:name).page params[:page]
+
+    if params[:search]
+      @dinosaurs = Dinosaur.search(params[:search]).page params[:page]
+    else
+      @dinosaurs = Dinosaur.order(:name).page params[:page]
+    end
   end
 
   def show
