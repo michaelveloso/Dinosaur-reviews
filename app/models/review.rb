@@ -13,6 +13,6 @@ class Review < ActiveRecord::Base
   validates :rating, numericality: { only_integer: true }
 
   def tally
-    votes.reduce(0) { |sum, vote| sum + vote.value}
+    votes.inject(0) { |sum, vote| sum + vote.value }
   end
 end
