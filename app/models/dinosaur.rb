@@ -11,6 +11,6 @@ class Dinosaur < ActiveRecord::Base
   validates :description, presence: true
 
   def self.search(query)
-    where("name like ?", "%#{query.capitalize}%")
+    where("name ILIKE ?", "%#{query}%")
   end
 end

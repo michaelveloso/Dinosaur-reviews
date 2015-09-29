@@ -3,9 +3,6 @@
 <head>
   <title>Dinosaurs</title>
   <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= stylesheet_link_tag 'buttons', media: 'all' %>
-  <%= stylesheet_link_tag 'comments', media: 'all' %>
-  <%= stylesheet_link_tag 'reviews', media: 'all' %>
   <%= csrf_meta_tags %>
   <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
 </head>
@@ -22,6 +19,7 @@
         <%- if current_user -%>
           <span id="user-show"><%= link_to current_user.email, user_path(current_user) %></span>
           <% if current_user.admin? %>
+          <%= link_to "All Users", admin_users_path %>
             <span id="admin-keyword">Admin</span>
           <% end %>
       <ul class="right">
@@ -29,7 +27,7 @@
           <%= form_tag(dinosaurs_path, :method => "get", class: "navbar-form", id: "search-form") do %>
           <%= text_field_tag :search, params[:search], class: "search", placeholder: "Search Dinosaurs" %>
         </li>
-        <li><%= submit_tag "Search", name: nil, class: "button" %> </li>
+        <li><%= submit_tag "Search", name: nil, class: "search-crud-buttons button expand round" %> </li>
           <%- end -%>
         <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
       </ul>
