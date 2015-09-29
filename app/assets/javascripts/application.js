@@ -31,13 +31,11 @@ $(document).ready(function(){
     votes(button, -1)
   });
 
-
-
-
-
-
-
-
+  $('.unvote-button').on('click', function(event){
+    event.preventDefault()
+    var button = $(this);
+    votes(button, 0)
+  });
 
 
 });

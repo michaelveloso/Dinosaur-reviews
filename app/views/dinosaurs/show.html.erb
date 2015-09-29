@@ -20,8 +20,9 @@
             <div class="review-body"><%= r.body %><span class="review-info"> (<%= r.user.email %>)</span></div>
             <div class="review-info"><%= @dinosaur.name %> got rating of <%= r.rating %></div>
             <div class="score"><%= r.tally %></div>
-            <%= button_to "^", review_votes_path(review_id: r.id), class: "button round tiny upvote-button" %>
-            <%= button_to "V", review_votes_path(review_id: r.id), class: "button round tiny downvote-button" %>
+            <%= button_to "upvote", review_votes_path(review_id: r.id), class: "button round tiny upvote-button" %>
+            <%= button_to "downvote", review_votes_path(review_id: r.id), class: "button round tiny downvote-button" %>
+            <%= button_to "unvote", review_votes_path(review_id: r.id), class: "button round tiny unvote-button" %>
           </div>
           <!--  this is for the comments block -->
           <div class="comments">

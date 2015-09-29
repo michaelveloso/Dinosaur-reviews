@@ -22,17 +22,52 @@ feature 'user votes on a review', %{
       click_button 'Log in'
     end
 
-    scenario "visit details page, clicks upvote button" do
-      # pending
+    scenario "visit details page, clicks upvote button", js: true do
+      review = FactoryGirl.create(:review)
+
+      visit dinosaur_path(review.dinosaur)
+      page.find('.upvote-button').click
+
+      expect(page).to have_content('1')
     end
 
-    scenario "visit details page, clicks downvote button" do
-      # pending
+    scenario "visit details page, clicks downvote button", js: true do
+      review = FactoryGirl.create(:review)
+
+      visit dinosaur_path(review.dinosaur)
+      page.find('.downvote-button').click
+
+      expect(page).to have_content('-1')
     end
 
-    scenario "visit details page, clicks Unvote button" do
-      # pending
+    scenario "visit details page, clicks Unvote button", js: true do
+      review = FactoryGirl.create(:review)
+
+      visit dinosaur_path(review.dinosaur)
+      page.find('.downvote-button').click
+      page.find('.unvote-button').click
+
+      expect(page).to have_content('0')
     end
 
+    scenario "user can't upvote more than once", js: true do
+      review = FactoryGirl.create(:review)
+
+      visit dinosaur_path(review.dinosaur)
+      page.find('.upvote-button').click
+      page.find('.upvote-button').click
+
+      expect(page).to have_content('1')
+    end
+    
+    scenario "user can't downvote more than once", js: true do
+      review = FactoryGirl.create(:review)
+
+      visit dinosaur_path(review.dinosaur)
+      page.find('.downvote-button').click
+      page.find('.downvote-button').click
+
+      expect(page).to have_content('-1')
+    end
   end
 end
