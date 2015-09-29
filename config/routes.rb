@@ -6,10 +6,14 @@ Rails.application.routes.draw do
   end
   resources :reviews, only: [:edit, :update, :destroy] do
     resources :comments, only: [:new, :edit, :create, :update]
+  end
+
+  resources :reviews do
     resources :votes
   end
 
   resources :users, only: [:show, :edit, :update, :destroy]
+
   namespace :admin do
     resources :users, only: [:index, :destroy]
   end
