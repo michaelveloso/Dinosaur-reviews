@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
 ruby '2.2.1'
-
+gem 'fog'
+gem 'carrierwave'
 gem 'dotenv-rails'
 gem 'kaminari'
 gem 'acts_as_votable', '~> 0.10.0'
