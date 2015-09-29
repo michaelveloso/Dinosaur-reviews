@@ -24,10 +24,20 @@ class ReviewsController < ApplicationController
 
   def edit
     @review = Review.find(params[:id])
+    if current_user != @review.user
+      flash[:errors] = "You can't edit this review!"
+      redirect_to @review.dinosaur
+    end
   end
 
   def update
     @review = Review.find(params[:id])
+
+    if current_user != @review.user
+      flash[:errors] = "You can't edit this review!"
+      redirect_to @review.dinosaur
+    end
+
     if @review.update_attributes(review_params)
       flash[:notice] = "Review Updated!"
       redirect_to dinosaur_path(@review.dinosaur_id)
@@ -39,6 +49,12 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review = Review.find(params[:id])
+
+    if (current_user != @review.user) && (!current_user.admin?)
+      flash[:errors] = "You can't delete this review!"
+      redirect_to @review.dinosaur
+    end
+
     @review.destroy
     flash[:notice] = "Review deleted!"
     redirect_to dinosaur_path(@review.dinosaur_id)

@@ -2,9 +2,9 @@ class Review < ActiveRecord::Base
   paginates_per 3
   belongs_to :dinosaur
   belongs_to :user
-  has_many :comments
-  has_many :votes
+  has_many :votes, dependent: :destroy
   has_many :users, through: :votes
+  has_many :comments, dependent: :destroy
 
   validates :dinosaur, presence: true
   validates :body, presence: true

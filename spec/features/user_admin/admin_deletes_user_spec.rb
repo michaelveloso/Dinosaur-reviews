@@ -21,13 +21,13 @@ feature 'admin can delete users', %{
   scenario "Admin can see delete button on user index page" do
     user1 = FactoryGirl.create(:user)
     visit admin_users_path
-    find_button("Exctinctify #{user1.email}!")
+    find_button("Exctinctify #{user1.email}")
   end
 
   scenario "Admin sees confirmation after deleting user" do
     user1 = FactoryGirl.create(:user)
     visit(admin_users_path)
-    click_button("Exctinctify #{user1.email}!")
+    click_button("Exctinctify #{user1.email}")
 
     expect(page).to have_content("User extinctified!")
   end
@@ -36,7 +36,7 @@ feature 'admin can delete users', %{
     user1 = FactoryGirl.create(:user)
     user2 = FactoryGirl.create(:user)
     visit(admin_users_path)
-    click_button("Exctinctify #{user1.email}!")
+    click_button("Exctinctify #{user1.email}")
 
     expect(page).to_not have_content(user1.email)
     expect(page).to have_content(user2.email)
@@ -46,7 +46,7 @@ feature 'admin can delete users', %{
     user1 = FactoryGirl.create(:user)
     expect(user1).to eq(User.last)
     visit(admin_users_path)
-    click_button("Exctinctify #{user1.email}!")
+    click_button("Exctinctify #{user1.email}")
 
     expect(user1).to_not eq(User.last)
   end
