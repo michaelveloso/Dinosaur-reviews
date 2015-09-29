@@ -7,6 +7,10 @@
     <%= f.label :email, class: "text-input-label" %><br>
     <%= f.text_field :email, class: "text-input-field", placeholder: @user.email %>
   </div>
+  <div class="field">
+     <%= f.label :profile_photo, "Profile Photo" %><br />
+     <%= f.file_field :profile_photo %>
+  </div>
   <div class="large-9 columns">
     <%= f.submit 'Update', class: 'dino-crud-buttons button expand round medium' %>
   </div>

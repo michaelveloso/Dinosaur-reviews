@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
 ruby '2.2.1'
-
+gem 'fog'
+gem 'carrierwave'
 gem 'dotenv-rails'
 gem 'kaminari'
 gem 'rails', '4.2.4'
