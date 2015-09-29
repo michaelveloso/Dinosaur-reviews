@@ -45,7 +45,7 @@ votes = function(button, val) {
     method: 'POST',
     url: button.parent().attr('action'),
     dataType: 'json',
-    data: {value: val}
+    data: {vote: {value: val}}
   })
   .success(function(data){
     var score = $(button.parent().parent().children('.score'));
