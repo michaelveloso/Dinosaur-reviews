@@ -40,3 +40,20 @@ div a {
 #user-show {
   color: white;
 }
+.review-user-thumb {
+  width: 50px;
+  height: 50px;
+  radius: 10px;
+  border: 1px;
+}
+.comment-user-thumb {
+  width: 40px;
+  height: 40px;
+  radius: 10px;
+  border: 1px;
+  margin-left: 60px;
+}
+div.review-image {
+  margin-right: auto;
+  margin-left: auto;
+}
