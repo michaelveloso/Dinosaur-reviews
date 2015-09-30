@@ -46,7 +46,4 @@ input.update-comment-crud-buttons.tiny {
 }
 input.search-crud-buttons {
   @include buttonstyles(#333);
-  &:hover{
-    @include buttonhovers(purple);
-  }
 }
