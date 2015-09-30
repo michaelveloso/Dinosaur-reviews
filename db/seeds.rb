@@ -13,6 +13,7 @@
 if Rails.env.production?
   UserSeeder.seed!
   DinosaurSeeder.seed!
+  ReviewSeeder.seed!
 end
 if Rails.env.development?
   UserSeeder.seed!
