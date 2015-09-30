@@ -16,25 +16,14 @@
       <% @review = r %>
       <div class="row">
         <div class="review-block large-9 columns">
-          <div class="votes">
-            <!-- these are the links for upvote downvote -->
-          <%= link_to like_dinosaur_review_path(dinosaur_id: r.dinosaur_id, id: r.id), method: :put do %>
-            Upvote
-            <%= r.get_upvotes.size %>
-          <% end %>
-          <%= link_to unvote_dinosaur_review_path(dinosaur_id: r.dinosaur_id, id: r.id), method: :put do %>
-            Unvote
-          <% end %>
-          <%= link_to dislike_dinosaur_review_path(dinosaur_id: r.dinosaur_id, id: r.id), method: :put do %>
-            Downvote
-            <%= r.get_downvotes.size %>
-          <% end %>
-          <!-- end of upvote downvote -->
-          </div>
           <div class="review-box">
             <div class="review-image column small-2"><%= image_tag r.user.profile_photo, class: "review-user-thumb" %></div>
             <div class="review-body"><%= r.body %></div>
             <div class="review-info"><%= @dinosaur.name %> got rating of <%= r.rating %></div>
+            <div class="score"><%= r.tally %></div>
+            <%= button_to "upvote", review_votes_path(review_id: r.id), class: "button round tiny upvote-button" %>
+            <%= button_to "downvote", review_votes_path(review_id: r.id), class: "button round tiny downvote-button" %>
+            <%= button_to "unvote", review_votes_path(review_id: r.id), class: "button round tiny unvote-button" %>
           </div>
           <!--  this is for the comments block -->
           <div class="comments">

@@ -11,6 +11,7 @@ class ReviewsController < ApplicationController
     @new_review.dinosaur = @dinosaur
 
     if @new_review.save
+      ReviewMailer.new_review(@new_review).deliver_later
       flash[:notice] = "Review added!"
       redirect_to dinosaur_path(@dinosaur)
     else
@@ -58,24 +59,6 @@ class ReviewsController < ApplicationController
     @review.destroy
     flash[:notice] = "Review deleted!"
     redirect_to dinosaur_path(@review.dinosaur_id)
-  end
-
-  def upvote
-    @review = Review.find(params[:id])
-    @review.upvote_by current_user
-    redirect_to :back
-  end
-
-  def downvote
-    @review = Review.find(params[:id])
-    @review.downvote_by current_user
-    redirect_to :back
-  end
-
-  def unvote
-    @review = Review.find(params[:id])
-    @review.unvote_by current_user
-    redirect_to :back
   end
 
   private
