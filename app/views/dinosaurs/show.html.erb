@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="dino-info large-4 columns">
+  <div class="dino-info small-4 columns">
     <h1><%= @dinosaur.name %></h1>
     <p> Originally Found: <%= @dinosaur.location_found %></p>
     <p> Description: <%= @dinosaur.description %></p>
@@ -9,35 +9,64 @@
     <%= image_tag "giganotosaurus.jpg" %>
   </div>
 </div>
+<div class="row">
+  <% if current_user == @dinosaur.user %>
+    <div class="dino-management small-9 columns">
+      <%= button_to "Edit this dinosaur!", edit_dinosaur_path(@dinosaur), class: 'dino-crud-buttons button expand round medium', method: :get%>
+      <%= button_to "Exctinctify this dinosaur!", @dinosaur, class: 'dino-crud-buttons button expand round medium', method: :delete %>
+    </div>
+  <% end %>
+  <% if current_user.present? %>
+    <% if current_user.admin? && current_user != @dinosaur.user %>
+      <div class="dino-management small-9 columns">
+        <%= button_to "Exctinctify this dinosaur!", @dinosaur, class: 'dino-crud-buttons button expand round medium', method: :delete %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
 
 <h4>Reviews for <%= @dinosaur.name %></h4>
   <div class="reviews row">
     <% @reviews.each do |r| %>
       <% @review = r %>
       <div class="row">
-        <div class="review-block large-9 columns">
+        <div class="review-block small-9 columns">
           <div class="review-box">
-            <div class="review-image column small-2"><%= image_tag r.user.profile_photo, class: "review-user-thumb" %></div>
+            <div class="review-image">
+              <a href="<%= user_path(r.user) %>">
+                <%= image_tag r.user.profile_photo, class: "review-user-thumb" %>
+              </a>
+              <% r.rating.times do %>
+                <%= image_tag "dino-rating.jpg", size: "25x25", class:"rating-image"%>
+              <% end %>
+            </div>
             <div class="review-body"><%= r.body %></div>
-            <div class="review-info"><%= @dinosaur.name %> got rating of <%= r.rating %></div>
-            <div class="score"><%= r.tally %></div>
-            <%= button_to "upvote", review_votes_path(review_id: r.id), class: "button round tiny upvote-button" %>
-            <%= button_to "downvote", review_votes_path(review_id: r.id), class: "button round tiny downvote-button" %>
-            <%= button_to "unvote", review_votes_path(review_id: r.id), class: "button round tiny unvote-button" %>
+            <div class="score">
+              <span class="column small-2 tally">Vote tally: <%= r.tally %></span>
+              <ul class="vote-button-list">
+                <li class="column small-2"><%= button_to "upvote", review_votes_path(review_id: r.id), class: "vote-button button round tiny upvote-button" %></li>
+                <li class="column small-2"><%= button_to "downvote", review_votes_path(review_id: r.id), class: "vote-button button round tiny downvote-button" %></li>
+                <li class="column small-6 end"><%= button_to "unvote", review_votes_path(review_id: r.id), class: "vote-button button round tiny unvote-button" %></li>
+              </ul>
+            </div>
           </div>
           <!--  this is for the comments block -->
           <div class="comments">
             <span class="comment-header">Comments:</span>
             <br>
             <% r.comments.each do |comment| %>
-              <div class="comment-image column small-2"><%= image_tag comment.user.profile_photo, class: "comment-user-thumb" %></div>
-              <span class="comment-body"><%= comment.body %> </span>
-              <span class="comment-user">(<%= comment.user.email %>) </span>
-              <% if current_user == comment.user %>
-                <%= button_to "Update comment", edit_review_comment_path(review_id: @review.id, id: comment.id),
-                method: :get, class: 'update-comment-crud-buttons button round tiny' %>
-              <% end %>
-              <br>
+              <div class="comment-row row">
+                <div class="comment-image column small-2">
+                  <a href="<%= user_path(comment.user) %>">
+                    <%= image_tag comment.user.profile_photo, class: "comment-user-thumb" %>
+                  </a>
+                </div>
+                <span class="comment-body"><%= comment.body %> </span>
+                <% if current_user == comment.user %>
+                  <%= button_to "Update comment", edit_review_comment_path(review_id: @review.id, id: comment.id),
+                  method: :get, class: 'update-comment-crud-buttons button round tiny' %>
+                <% end %>
+              </div>
             <% end %>
           </div>
           <% if user_signed_in? %>
@@ -47,7 +76,7 @@
         <!-- end comments block -->
         <!-- these are the buttons for each review for users of the review -->
         <% if current_user == r.user %>
-          <div class="large-1 columns end">
+          <div class="small-1 columns end">
             <%= button_to "Update", edit_review_path(r.id), class: 'review-crud-buttons button expand round tiny', method: :get %>
             <%= button_to "Delete", r, method: :delete, class: 'review-crud-buttons button expand round tiny' %>
           </div>
@@ -70,33 +99,20 @@
   <div class="row">
     <h4>What do you think of <%= @dinosaur.name %>? </h4>
     <%= form_for [@dinosaur, @new_review], {action: dinosaur_reviews_path(@dinosaur)} do |f| %>
-      <div class="large-1 columns">
+      <div class="small-1 columns">
         <%= f.label :rating %>
         <%= f.select :rating, [[1,1],[2,2],[3,3],[4,4],[5,5]], class: 'border-radius', method: :post %>
       </div>
-      <div class="large-8 columns">
+      <div class="small-8 columns">
         <%= f.label :body, "New Review" %>
-        <%= f.text_field :body, placeholder: "Write a new review for #{@dinosaur.name}" %>
-
+        <%= f.text_field :body, placeholder: "Write a new review for #{@dinosaur.name}", size: 30 %>
       </div>
       <br>
-      <div class="large-9 columns">
+      <div class="small-9 columns">
         <%= f.submit 'Submit a Review', class: 'show-crud-buttons button expand round medium' %>
       </div>
     <% end %>
 
-    <% if current_user == @dinosaur.user %>
-      <div class="large-9 columns">
-        <%= button_to "Edit this dinosaur!", edit_dinosaur_path(@dinosaur), class: 'dino-crud-buttons button expand round medium', method: :get%>
-        <%= button_to "Exctinctify this dinosaur!", @dinosaur, class: 'dino-crud-buttons button expand round medium', method: :delete %>
-      </div>
-    <% end %>
-
-    <% if current_user.admin? && current_user != @dinosaur.user %>
-      <div class="large-9 columns">
-        <%= button_to "Exctinctify this dinosaur!", @dinosaur, class: 'dino-crud-buttons button expand round medium', method: :delete %>
-      </div>
-    <% end %>
 
   </div>
 <% end %>

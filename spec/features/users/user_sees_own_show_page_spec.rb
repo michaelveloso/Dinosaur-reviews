@@ -8,7 +8,7 @@ feature 'user sees show page', %{
   Acceptance criteria:
   [] Users can click on their email to get to their show page
   [] I want to see my information on the show page
-  [] I don't want other users to see my show page
+  [] I don't want other users to see update or delete buttons
 } do
 
   before(:each) do
@@ -30,11 +30,11 @@ feature 'user sees show page', %{
     expect(page).to have_content(@user.email)
   end
 
-  scenario 'no other users can see my show page' do
+  scenario 'no other users can see update or delete buttons' do
     new_user = FactoryGirl.create(:user)
     visit user_path(new_user)
 
-    expect(page).to have_content("You're not signed in as this user")
-    expect(current_path).to eq(dinosaurs_path)
+    expect(page).to_not have_content("Update")
+    expect(page).to_not have_content("Delete")
   end
 end
