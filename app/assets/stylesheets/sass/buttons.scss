@@ -18,41 +18,41 @@
 
 input.show-crud-buttons {
   @include buttonstyles;
-  &:hover{
+  &:hover {
     @include buttonhovers($jade);
   }
 }
 input.review-crud-buttons {
   @include buttonstyles($gray);
   color: $black;
-  &:hover{
+  &:hover {
     @include buttonhovers($yellow);
   }
 }
 input.dino-crud-buttons {
   @include buttonstyles;
-  &:hover{
+  &:hover {
     @include buttonhovers($green);
   }
 }
 input.submit-comment-crud-buttons.tiny {
   box-shadow: 8px 8px 8px $shadow;
   @include buttonstyles($jade);
-  &:hover{
+  &:hover {
     @include buttonhovers($purple);
   }
 }
 input.update-comment-crud-buttons.tiny {
   @include buttonstyles($gray);
 
-  &:hover{
+  &:hover {
     @include buttonhovers($purple);
   }
 }
 input.search-crud-buttons {
   @include buttonstyles($black);
   color: $white;
-  &:hover{
+  &:hover {
     @include buttonhovers($gray);
     box-shadow: 0 0 0 $shadow;
     color: $black;
@@ -61,7 +61,7 @@ input.search-crud-buttons {
 input.vote-button.tiny {
   padding: 5px;
   @include buttonstyles($jade);
-  &:hover{
+  &:hover {
     @include buttonhovers($blue);
     padding: 5px;
   }
