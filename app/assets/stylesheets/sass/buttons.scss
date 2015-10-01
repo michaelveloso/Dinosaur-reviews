@@ -1,7 +1,7 @@
-@import 'colors';
+@import "colors";
 
 .tiny {
-  padding: 0px;
+  padding: 0;
 }
 
 @mixin buttonstyles($bg-color: $gray) {
@@ -54,7 +54,7 @@ input.search-crud-buttons {
   color: $white;
   &:hover{
     @include buttonhovers($gray);
-    box-shadow: 0px 0px 0px $shadow;
+    box-shadow: 0 0 0 $shadow;
     color: $black;
   }
 }
@@ -70,5 +70,5 @@ input.vote-button.tiny {
 .button_to {
   display: inline;
   vertical-align: middle;
-  padding: 0px;
+  padding: 0;
 }
