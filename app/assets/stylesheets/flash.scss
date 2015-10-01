@@ -1,0 +1,13 @@
+@import 'sass/colors';
+
+#error_explanation {
+  background-color: $red;
+}
+
+.flash-notice {
+  background: $blue;
+}
+
+.flash-errors {
+  background: $red;
+}

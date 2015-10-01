@@ -42,12 +42,10 @@
             </div>
             <div class="review-body"><%= r.body %></div>
             <div class="score">
-              <span class="column small-2 tally">Vote tally: <%= r.tally %></span>
-              <ul class="vote-button-list">
-                <li class="column small-2"><%= button_to "upvote", review_votes_path(review_id: r.id), class: "vote-button button round tiny upvote-button" %></li>
-                <li class="column small-2"><%= button_to "downvote", review_votes_path(review_id: r.id), class: "vote-button button round tiny downvote-button" %></li>
-                <li class="column small-6 end"><%= button_to "unvote", review_votes_path(review_id: r.id), class: "vote-button button round tiny unvote-button" %></li>
-              </ul>
+              <span class="tally">Vote tally: <%= r.tally %></span>
+              <%= button_to "▲", review_votes_path(review_id: r.id), class: "vote-button button round tiny upvote-button" %>
+              <%= button_to "▼", review_votes_path(review_id: r.id), class: "vote-button button round tiny downvote-button" %>
+              <%= button_to "◯", review_votes_path(review_id: r.id), class: "vote-button button round tiny unvote-button" %>
             </div>
           </div>
           <!--  this is for the comments block -->

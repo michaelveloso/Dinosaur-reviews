@@ -58,6 +58,17 @@ input.search-crud-buttons {
     color: $black;
   }
 }
-input.vote-button {
+input.vote-button.tiny {
+  padding: 5px;
   @include buttonstyles($jade);
+  &:hover{
+    @include buttonhovers($blue);
+    padding: 5px;
+  }
+}
+
+.button_to {
+  display: inline;
+  vertical-align: middle;
+  padding: 0px;
 }
