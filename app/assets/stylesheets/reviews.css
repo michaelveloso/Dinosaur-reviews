@@ -21,3 +21,11 @@
   box-shadow: 8px 8px 8px #777;
   padding-bottom: 15px;
 }
+textarea#textarea-review {
+  height: 200px;
+}
+
+.score.inner {
+  display: inline-block;
+  color: black;
+}

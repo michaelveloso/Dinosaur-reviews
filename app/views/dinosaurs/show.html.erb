@@ -105,7 +105,7 @@
       </div>
       <div class="small-8 columns">
         <%= f.label :body, "New Review" %>
-        <%= f.text_field :body, placeholder: "Write a new review for #{@dinosaur.name}", size: 30 %>
+        <%= f.text_area :body, placeholder: "Write a new review for #{@dinosaur.name}", id: 'textarea-review' %>
       </div>
       <br>
       <div class="small-9 columns">
