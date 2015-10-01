@@ -1,4 +1,4 @@
-<%= image_tag "cute-dinosaur.png" %>
+<%= image_tag "cute-dinosaur.png", class:"home-image"%>
 
 <h1>List of Dinosaurs:</h1>
 <div class="dinosaur-links">
@@ -8,7 +8,13 @@
       <span class="dinosaur-desc"><%= dinosaur.description %></span>
     </div>
   <% end %>
-</ul>
+</div>
 
-<%= button_to "Create a dinosaur!", new_dinosaur_path, class: 'dino-crud-buttons button expand round medium', method: :get %>
+<% if user_signed_in? %>
+  <%= button_to "Create a dinosaur!", new_dinosaur_path, class: 'dino-crud-buttons button expand round medium', method: :get %>
+<% else %>
+  <div class="sign-in-message">
+    <%= button_to "Sign in to create a dinosaur!", new_user_session_path, class: 'dino-crud-buttons button expand round medium', method: :get %>
+  </div>
+<% end %>
 <%= paginate @dinosaurs %>

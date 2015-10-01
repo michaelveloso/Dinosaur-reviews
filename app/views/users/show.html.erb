@@ -13,6 +13,12 @@
       information. Have a DINOmite day!
      </p>
   </div>
+  <% if current_user == @user %>
+    <div class="column small-4 end">
+      <%= button_to "Update Info", edit_user_registration_path(@user), class: 'dino-crud-buttons button expand round medium', method: :get%>
+      <%= button_to "Delete Account", @user, class: 'dino-crud-buttons button expand round medium', method: :delete %>
+    </div>
+  <% end %>
 </div>
 <h3>List of Dinosaurs Contributions:</h3>
 <div class="dinosaur-links">
@@ -22,7 +28,3 @@
       <span class="dinosaur-desc"><%= dinosaur.description %></span>
     </div>
   <% end %>
-<div class="account-actions">
-  <%= button_to "Update Info", edit_user_registration_path(@user), class: 'dino-crud-buttons button expand round medium', method: :get%>
-  <%= button_to "Delete Account", @user, class: 'dino-crud-buttons button expand round medium', method: :delete %>
-</div>

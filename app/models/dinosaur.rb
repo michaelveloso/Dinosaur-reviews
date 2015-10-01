@@ -1,5 +1,5 @@
 class Dinosaur < ActiveRecord::Base
-  paginates_per 5
+  paginates_per 10
   belongs_to :user
   has_many :reviews, dependent: :destroy
 
@@ -10,6 +10,7 @@ class Dinosaur < ActiveRecord::Base
   validates :user, presence: true
   validates :description, presence: true
 
+  mount_uploader :dino_photo, DinoPhotoUploader
   def self.search(query)
     where("name ILIKE ?", "%#{query}%")
   end

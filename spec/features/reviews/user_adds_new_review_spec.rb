@@ -45,7 +45,7 @@ feature 'user adds new review', %{
       dino = FactoryGirl.create(:dinosaur)
 
       visit dinosaur_path(dino)
-      fill_in("New Review", with: "What a nice dinosaur!")
+      fill_in("textarea-review", with: "What a nice dinosaur!")
       select '2', from: 'Rating'
       click_button("Submit")
 
@@ -56,7 +56,7 @@ feature 'user adds new review', %{
       dino = FactoryGirl.create(:dinosaur)
 
       visit dinosaur_path(dino)
-      fill_in("New Review", with: "")
+      fill_in("textarea-review", with: "")
       select '2', from: 'Rating'
 
       click_button("Submit")

@@ -28,7 +28,7 @@ class DinosaursController < ApplicationController
     @dinosaur = Dinosaur.new(dinosaur_params)
 
     if @dinosaur.save
-      flash[:success] = 'Dinosaur added!'
+      flash[:notice] = 'Dinosaur added!'
       redirect_to @dinosaur
     else
       flash[:errors] = @dinosaur.errors.full_messages.join(', ')
@@ -53,7 +53,7 @@ class DinosaursController < ApplicationController
     end
 
     if @dinosaur.update(dinosaur_params)
-      flash[:success] = 'Dinosaur changed!'
+      flash[:notice] = 'Dinosaur changed!'
       redirect_to @dinosaur
     else
       flash[:errors] = @dinosaur.errors.full_messages.join(', ')
@@ -70,7 +70,7 @@ class DinosaursController < ApplicationController
     end
 
     if @dinosaur.destroy
-      flash[:success] = 'Dinosaur extinctified!'
+      flash[:notice] = 'Dinosaur extinctified!'
       redirect_to dinosaurs_path
     else
       flash[:errors] = @dinosaur.errors.full_messages.join(', ')
@@ -85,6 +85,7 @@ class DinosaursController < ApplicationController
       :name,
       :location_found,
       :info_url,
-      :description).merge(user_id: current_user.id)
+      :description,
+      :dino_photo).merge(user_id: current_user.id)
   end
 end

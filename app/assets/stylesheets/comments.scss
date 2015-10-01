@@ -1,7 +1,10 @@
+@import "sass/colors";
+
 .comments {
-  background-color: #888;
+  background-color: $jade;
   color: white;
   padding: 5px;
+  padding-bottom: 30px;
   font-size: 10pt;
   box-shadow: 8px 8px 8px #777;
   padding-top: 15px;
@@ -17,4 +20,7 @@
   font-weight: bold;
   color: #fff;
   margin-left: 60px;
+}
+.comment-row {
+  padding: 10px 0px;
 }

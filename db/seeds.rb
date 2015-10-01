@@ -10,6 +10,11 @@
 # t.string :info_url, null: false
 # t.string :photo_url
 # t.belongs_to :user
+if Rails.env.production?
+  UserSeeder.seed!
+  DinosaurSeeder.seed!
+  ReviewSeeder.seed!
+end
 if Rails.env.development?
   UserSeeder.seed!
   DinosaurSeeder.seed!
