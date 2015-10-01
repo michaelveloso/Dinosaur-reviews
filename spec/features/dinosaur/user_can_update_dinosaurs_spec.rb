@@ -76,10 +76,10 @@ feature 'user can update a dinosaur', %{
     scenario 'form is pre-filled with current values' do
       visit edit_dinosaur_path(@dinosaur)
 
-      find_field('Name').value.should eq(@dinosaur.name)
-      find_field('Location found').value.should eq(@dinosaur.location_found)
-      find_field('Info url').value.should eq(@dinosaur.info_url)
-      find_field('Description').value.should eq(@dinosaur.description)
+      expect(find_field('Name').value).to eq(@dinosaur.name)
+      expect(find_field('Location found').value).to eq(@dinosaur.location_found)
+      expect(find_field('Info url').value).to eq(@dinosaur.info_url)
+      expect(find_field('Description').value).to eq(@dinosaur.description)
     end
 
     scenario 'edit page has link to show page' do
