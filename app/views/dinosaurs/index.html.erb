@@ -1,5 +1,44 @@
-<%= image_tag "cute-dinosaur.png", class:"home-image"%>
-
+<div class="slide-show columns large-centered">
+  <div class="">
+    <%= image_tag "dinosaur2.jpg"%>
+  </div>
+  <div class="">
+    <%= image_tag "dinosaur3.jpg"%>
+  </div>
+  <div class="">
+    <%= image_tag "dinosaur4.jpg"%>
+  </div>
+  <div class="">
+    <%= image_tag "dinosaur5.jpg"%>
+  </div>
+  <div class="">
+    <%= image_tag "dinosaur6.jpg"%>
+  </div>
+  <div class="">
+    <%= image_tag "dinosaur7.jpg"%>
+  </div>
+  <div class="">
+    <%= image_tag "dinosaur8.jpg"%>
+  </div>
+  <div class="">
+    <%= image_tag "dinosaur9.jpg"%>
+  </div>
+  <div class="">
+    <%= image_tag "eggs.jpg"%>
+  </div>
+</div>
+<div class="dino-text">
+  <p class="text-center">
+    Dinosaurs are a diverse group of animals of the clade Dinosauria. They first
+    appeared during the Triassic period, 231.4 million years ago, and were the
+    dominant terrestrial vertebrates for 135 million years, from the start of the
+    Jurassic (about 200 million years ago) until the end of the Cretaceous
+    (66 million years ago), when the Cretaceous–Paleogene extinction event led
+    to the extinction of most dinosaur groups (and three-quarters of plant and
+    animal species on Earth) ending the Mesozoic Era.
+    <%= link_to "Source", "https://en.wikipedia.org/wiki/Dinosaur" %>
+  </p>
+</div>
 <h1>List of Dinosaurs:</h1>
 <div class="dinosaur-links">
   <% @dinosaurs.each do |dinosaur|%>
