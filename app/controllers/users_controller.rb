@@ -10,4 +10,15 @@ class UsersController < ApplicationController
       redirect_to dinosaurs_path
     end
   end
+
+  def destroy
+    @user = User.find(params[:id])
+    if current_user != @user
+      flash[:errors] = "You're not signed in as this user"
+      redirect_to dinosaurs_path
+    end
+    @user.destroy
+    flash[:success] = "Account deleted"
+    redirect_to root_path
+  end
 end
