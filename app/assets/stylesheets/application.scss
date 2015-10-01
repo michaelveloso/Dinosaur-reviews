@@ -15,7 +15,7 @@
  *= require_self
 
  */
-@import 'sass/colors';
+@import "sass/colors";
 
 #page-wrap {
   margin: 0 auto;
@@ -32,8 +32,8 @@ div a {
   color: $black;
 }
 .top-bar a {
-  text-decoration: none;
   color: $white;
+  text-decoration: none;
 }
 .top-bar a:hover {
   color: $blue;
