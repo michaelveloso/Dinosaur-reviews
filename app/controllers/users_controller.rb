@@ -3,33 +3,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @dinosaurs = Dinosaur.where(user: @user)
 
     if current_user != @user
       flash[:errors] = "You're not signed in as this user"
       redirect_to dinosaurs_path
-    end
-  end
-
-  def edit
-    @user = User.find(params[:id])
-    if current_user != @user
-      flash[:errors] = "You're not signed in as this user"
-      redirect_to dinosaurs_path
-    end
-  end
-
-  def update
-    @user = User.find(params[:id])
-    if current_user != @user
-      flash[:errors] = "You're not signed in as this user"
-      redirect_to dinosaurs_path
-    end
-    if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated"
-      redirect_to user_path(@user)
-    else
-      flash[:errors] = @user.errors.full_messages.join(', ')
-      render :edit
     end
   end
 
