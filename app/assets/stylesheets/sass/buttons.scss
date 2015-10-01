@@ -23,6 +23,7 @@ input.review-crud-buttons {
   @include buttonstyles;
   &:hover{
     @include buttonhovers(yellow);
+    color: black;
   }
 }
 input.dino-crud-buttons {
@@ -49,4 +50,7 @@ input.search-crud-buttons {
   &:hover{
     @include buttonhovers(purple);
   }
+}
+input.vote-button {
+  @include buttonstyles(#888);
 }

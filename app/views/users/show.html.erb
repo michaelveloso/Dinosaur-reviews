@@ -3,10 +3,12 @@
 </h1>
 <div class="row">
   <div class="column small-4">
-    <%= image_tag(current_user.profile_photo, class: "th") %>
+    <%= image_tag(@user.profile_photo, class: "th") %>
   </div>
-  <div class="column small-4 end">
-    <%= button_to "Update Info", edit_user_registration_path(@user), class: 'dino-crud-buttons button expand round medium', method: :get%>
-    <%= button_to "Delete Account", @user, class: 'dino-crud-buttons button expand round medium', method: :delete %>
-  </div>
+  <% if current_user == @user %>
+    <div class="column small-4 end">
+      <%= button_to "Update Info", edit_user_registration_path(@user), class: 'dino-crud-buttons button expand round medium', method: :get%>
+      <%= button_to "Delete Account", @user, class: 'dino-crud-buttons button expand round medium', method: :delete %>
+    </div>
+  <% end %>
 </div>

@@ -29,7 +29,8 @@ votes = function(button, val) {
     data: {vote: {value: val}}
   })
   .success(function(data){
-    var score = $(button.parent().parent().children('.score'));
-    score.text(data);
+    var score =
+      $(button.parent().parent().parent().parent().children('.tally'));
+    score.text('Vote tally: ' + data);
   });
 };

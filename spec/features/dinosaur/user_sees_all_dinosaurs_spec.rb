@@ -32,8 +32,8 @@ feature 'sees index page', %{
     expect(current_path).to eq(dinosaur_path(dino))
   end
 
-  scenario 'user sees up to five dinosaurs per page' do
-    dinosaurs = FactoryGirl.create_list(:dinosaur, 6)
+  scenario 'user sees up to ten dinosaurs per page' do
+    dinosaurs = FactoryGirl.create_list(:dinosaur, 11)
 
     visit root_path
 

@@ -24,7 +24,7 @@ feature 'user adds new review', %{
     click_button 'Log in'
     visit dinosaur_path(@dinosaur)
 
-    fill_in("New Review", with: "What a nice dinosaur!")
+    fill_in("textarea-review", with: "What a nice dinosaur!")
     select '2', from: 'Rating'
     click_button("Submit")
 
