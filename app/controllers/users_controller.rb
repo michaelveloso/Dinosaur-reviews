@@ -20,7 +20,7 @@ class UsersController < ApplicationController
       redirect_to dinosaurs_path
     end
     if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated"
+      flash[:notice] = "Profile updated"
       redirect_to user_path(@user)
     else
       flash[:errors] = @user.errors.full_messages.join(', ')

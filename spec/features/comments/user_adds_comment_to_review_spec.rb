@@ -30,7 +30,7 @@ feature 'user can add a comment to a review', %{
       review = FactoryGirl.create(:review)
       visit dinosaur_path(review.dinosaur)
 
-      fill_in 'Comment', with: "This review is awesome!"
+      fill_in 'comment-input', with: "This review is awesome!"
       click_button 'Save comment'
       expect(page).to have_content("This review is awesome!")
       expect(page).to have_content("Comment Added!")
@@ -41,7 +41,7 @@ feature 'user can add a comment to a review', %{
       review = FactoryGirl.create(:review)
       visit dinosaur_path(review.dinosaur)
 
-      find_field("Comment")
+      find_field("comment-input")
     end
 
     scenario 'form is filled out incorrectly' do
