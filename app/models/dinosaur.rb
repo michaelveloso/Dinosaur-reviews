@@ -10,6 +10,7 @@ class Dinosaur < ActiveRecord::Base
   validates :user, presence: true
   validates :description, presence: true
 
+  mount_uploader :dino_photo, DinoPhotoUploader
   def self.search(query)
     where("name ILIKE ?", "%#{query}%")
   end

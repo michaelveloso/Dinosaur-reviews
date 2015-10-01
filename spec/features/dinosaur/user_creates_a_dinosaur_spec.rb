@@ -37,6 +37,7 @@ feature 'user can create a new dinosaur', %{
       find_field("Location found")
       find_field("Info url")
       find_field("Description")
+      find_field("Dino Photo")
     end
 
     feature "User fills out form correctly" do
@@ -49,9 +50,12 @@ feature 'user can create a new dinosaur', %{
         fill_in "Location found", with: dinosaur.location_found
         fill_in "Info url", with: dinosaur.info_url
         fill_in "Description", with: dinosaur.description
+        attach_file 'Dino Photo',
+          "#{Rails.root}/spec/support/images/example_photo.jpg"
         click_button "Create a Dinosaur!"
 
         expect(page).to have_content("Dinosaur added!")
+        expect(page).to have_xpath("//img[@src=\"/uploads/dinosaur/dino_photo/#{Dinosaur.last.id}/example_photo.jpg\"]")
       end
 
       scenario "User is taken to show page" do
@@ -101,6 +105,7 @@ feature 'user can create a new dinosaur', %{
         find_field("Location found")
         find_field("Info url")
         find_field("Description")
+        find_field("Dino Photo")
       end
 
     end

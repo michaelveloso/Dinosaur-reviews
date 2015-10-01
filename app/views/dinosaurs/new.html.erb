@@ -17,7 +17,10 @@
     <%= form.label :description, class: "text-input-label" %><br>
     <%= form.text_field :description, class: "text-input-field", placeholder: @dinosaur.description%>
   </div>
-
+  <div class="field column small-12">
+    <%= form.label :dino_photo, "Dino Photo", class: "text-input-label" %><br>
+    <%= form.file_field :dino_photo %>
+  </div>
   <br>
   <div class="actions">
     <%= form.submit "Create a Dinosaur!", class: "dino-crud-buttons button expand round medium" %>

@@ -85,6 +85,7 @@ class DinosaursController < ApplicationController
       :name,
       :location_found,
       :info_url,
-      :description).merge(user_id: current_user.id)
+      :description,
+      :dino_photo).merge(user_id: current_user.id)
   end
 end
