@@ -1,56 +1,63 @@
+@import 'colors';
+
 .tiny {
   padding: 0px;
 }
 
-@mixin buttonstyles($bg-color: #bbb) {
+@mixin buttonstyles($bg-color: $gray) {
   background-color: $bg-color;
-  padding: 5px
+  padding: 5px;
+  color: $black;
 }
 
 @mixin buttonhovers($hover-color) {
   background-color: $hover-color;
   padding: 5px;
-  box-shadow: 8px 8px 8px #777;
+  box-shadow: 8px 8px 8px $shadow;
 }
 
 input.show-crud-buttons {
   @include buttonstyles;
   &:hover{
-    @include buttonhovers(green);
+    @include buttonhovers($jade);
   }
 }
 input.review-crud-buttons {
-  @include buttonstyles;
+  @include buttonstyles($gray);
+  color: $black;
   &:hover{
-    @include buttonhovers(yellow);
-    color: black;
+    @include buttonhovers($yellow);
   }
 }
 input.dino-crud-buttons {
   @include buttonstyles;
   &:hover{
-    @include buttonhovers(green);
+    @include buttonhovers($green);
   }
 }
 input.submit-comment-crud-buttons.tiny {
-  @include buttonstyles(#999);
+  box-shadow: 8px 8px 8px $shadow;
+  @include buttonstyles($jade);
   &:hover{
-    @include buttonhovers(purple);
+    @include buttonhovers($purple);
   }
 }
 input.update-comment-crud-buttons.tiny {
-  @include buttonstyles(#888);
+  @include buttonstyles($gray);
 
   &:hover{
-    @include buttonhovers(purple);
+    @include buttonhovers($purple);
   }
 }
 input.search-crud-buttons {
-  @include buttonstyles(#333);
+  @include buttonstyles($black);
+  color: $white;
   &:hover{
-    @include buttonhovers(purple);
+    @include buttonhovers($gray);
+    box-shadow: 0px 0px 0px $shadow;
+    color: $black;
   }
 }
 input.vote-button {
-  @include buttonstyles(#888);
+  @include buttonstyles($jade);
 }
