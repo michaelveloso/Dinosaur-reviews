@@ -35,6 +35,11 @@ Explorasaurus is written in rails.  Additional gems and addons inculde:
 * Additional validations that filter for
 * Display who added a dinosaur
 
+### Team
+<a href="https://github.com/mcasey5216"><img src="https://avatars3.githubusercontent.com/u/12865707?v=3&s=460" width="100" /></a>  <a href="https://github.com/stacy-wells"><img src="https://avatars1.githubusercontent.com/u/11218638?v=3&s=460" width="100"/></a>
+<a href="https://github.com/michaelveloso"><img src="https://avatars3.githubusercontent.com/u/11981927?v=3&s=460" width="100"/></a>
+<a href="https://github.com/maribethpierce"><img src="https://avatars3.githubusercontent.com/u/10468678?v=3&s=460" width="100"/></a>
+
 [ ![Codeship Status for michaelveloso/Dinosaur-reviews](https://codeship.com/projects/84c97f50-42b3-0133-bc6b-1eb5f82d52fc/status?branch=master)](https://codeship.com/projects/103836)
 ![Code Climate](https://codeclimate.com/github/michaelveloso/Dinosaur-reviews.png)
 [![Coverage Status](https://coveralls.io/repos/michaelveloso/Dinosaur-reviews/badge.svg?branch=master&service=github)](https://coveralls.io/github/michaelveloso/Dinosaur-reviews?branch=master)
