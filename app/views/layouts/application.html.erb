@@ -27,7 +27,9 @@
           <%= form_tag(dinosaurs_path, :method => "get", class: "navbar-form", id: "search-form") do %>
           <%= text_field_tag :search, params[:search], class: "search", placeholder: "Search Dinosaurs" %>
         </li>
-        <li><%= submit_tag "Search", name: nil, class: "search-crud-buttons button expand" %> </li>
+        <li>
+          <%= submit_tag "Search", name: nil, class: "search-crud-buttons button" %>
+        </li>
           <%- end -%>
         <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
       </ul>

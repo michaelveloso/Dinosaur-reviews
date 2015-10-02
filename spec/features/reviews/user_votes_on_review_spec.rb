@@ -66,7 +66,6 @@ feature 'user votes on a review', %{
       visit dinosaur_path(review.dinosaur)
       page.find('.downvote-button').click
       page.find('.downvote-button').click
-
       expect(page).to have_content('-1')
     end
   end

@@ -3,7 +3,15 @@
 </h1>
 <div class="row">
   <div class="column small-4">
-    <%= image_tag(@user.profile_photo, class: "th") %>
+    <%= image_tag(current_user.profile_photo, class: "th") %>
+  </div>
+  <div class="column small-8">
+    <p>
+      Welcome to your Dinosaur Account Page! We are so happy that you share our
+      love of dinosaurs, too.  Here you can see your contributions to the site
+      with links to your dinosaur's page.  You can also edit your own account
+      information. Have a DINOmite day!
+     </p>
   </div>
   <% if current_user == @user %>
     <div class="column small-4 end">
@@ -12,3 +20,11 @@
     </div>
   <% end %>
 </div>
+<h3>List of Dinosaurs Contributions:</h3>
+<div class="dinosaur-links">
+  <% @dinosaurs.each do |dinosaur|%>
+    <div class="dinosaur-link">
+      <%= link_to dinosaur.name, dinosaur_path(dinosaur) %><br>
+      <span class="dinosaur-desc"><%= dinosaur.description %></span>
+    </div>
+  <% end %>
