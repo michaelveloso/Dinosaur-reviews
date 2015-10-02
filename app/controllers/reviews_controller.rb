@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
     @new_review.dinosaur = @dinosaur
 
     if @new_review.save
-      ReviewMailer.new_review(@new_review).deliver_later
+      # ReviewMailer.new_review(@new_review).deliver_later
       flash[:notice] = "Review added!"
       redirect_to dinosaur_path(@dinosaur)
     else
