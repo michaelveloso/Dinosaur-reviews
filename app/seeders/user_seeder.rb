@@ -1,15 +1,22 @@
 class UserSeeder
   USERS = [
     {
-      email: "name@gmail.com",
+      email: "stacy@gmail.com",
       password: "password",
-      password_confirmation: "password"
+      password_confirmation: "password",
+      admin: true
     }, {
-      email: "someone@gmail.com",
+      email: "mike@gmail.com",
       password: "password",
-      password_confirmation: "password"
+      password_confirmation: "password",
+      admin: true
     }, {
-      email: "admin@admin.com",
+      email: "michelle@gmail.com",
+      password: "password",
+      password_confirmation: "password",
+      admin: true
+    }, {
+      email: "maribeth@gmail.com",
       password: "password",
       password_confirmation: "password",
       admin: true
