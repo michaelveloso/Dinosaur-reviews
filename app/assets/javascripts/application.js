@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require foundation
 //= require_tree .
+//= require slick.min
+
 $(function(){ $(document).foundation(); });
